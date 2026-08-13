@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>プロフィール | 仮サイト</title>
+  <meta name="description" content="ここにプロフィールページの説明文が入ります。">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <!-- 本公開時にこの draft-banner ごと削除する -->
+  <p class="draft-banner">これは仮サイトです。掲載されている文章・画像・実績はすべてダミーです。</p>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="site-logo" href="index.html">
+        <!-- TODO:copy 名前またはロゴに差し替え -->
+        Your Name
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <ul class="site-nav__list">
+          <li>
+            <a class="site-nav__link" href="index.html">
+              <span class="site-nav__link-en">HOME</span>
+              <span class="site-nav__link-ja">ホーム</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="about.html" aria-current="page">
+              <span class="site-nav__link-en">ABOUT</span>
+              <span class="site-nav__link-ja">プロフィール</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="works.html">
+              <span class="site-nav__link-en">WORKS</span>
+              <span class="site-nav__link-ja">制作実績</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="contact.html">
+              <span class="site-nav__link-en">CONTACT</span>
+              <span class="site-nav__link-ja">お問い合わせ</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section--lead section--surface">
+      <div class="wrap">
+        <h1 class="section-title">
+          <span class="section-title__en">ABOUT</span>
+          <span class="section-title__ja">プロフィール</span>
+        </h1>
+        <p class="section__desc measure">ここにページの導入文が入ります。</p>
+      </div>
+    </section>
+
+    <div class="wave wave--flip" aria-hidden="true">
+      <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+      </svg>
+    </div>
+
+    <section class="section">
+      <div class="wrap layout--sidebar">
+        <div class="page-about__aside" data-reveal>
+          <img class="profile__photo" src="assets/img/profile-placeholder.svg"
+               alt="プロフィール写真（プレースホルダ）" width="600" height="600">
+        </div>
+
+        <div>
+          <!-- TODO:copy 自己紹介本文を差し替え -->
+          <div class="flow measure" data-reveal>
+            <h2 class="section-title section-title--sm">
+              <span class="section-title__en">PROFILE</span>
+              <span class="section-title__ja">自己紹介</span>
+            </h2>
+            <p>
+              ここに自己紹介の本文が入ります。何をしている人なのか、どんな価値観で
+              仕事をしているのかを書きます。
+            </p>
+            <p>
+              ここに 2 段落目が入ります。得意分野や作業の進め方、
+              大切にしていることなどを書きます。
+            </p>
+          </div>
+
+          <div class="flow mt-5" data-reveal>
+            <h2 class="section-title section-title--sm">
+              <span class="section-title__en">SKILLS</span>
+              <span class="section-title__ja">できること</span>
+            </h2>
+            <!-- TODO:copy スキル項目を実際の内容に差し替え -->
+            <dl class="def-list">
+              <div class="def-list__row">
+                <dt class="def-list__term">スキル分類 A</dt>
+                <dd class="def-list__desc">ここに具体的なスキルやツール名が入ります。</dd>
+              </div>
+              <div class="def-list__row">
+                <dt class="def-list__term">スキル分類 B</dt>
+                <dd class="def-list__desc">ここに具体的なスキルやツール名が入ります。</dd>
+              </div>
+              <div class="def-list__row">
+                <dt class="def-list__term">スキル分類 C</dt>
+                <dd class="def-list__desc">ここに具体的なスキルやツール名が入ります。</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="flow mt-5" data-reveal>
+            <h2 class="section-title section-title--sm">
+              <span class="section-title__en">CAREER</span>
+              <span class="section-title__ja">経歴</span>
+            </h2>
+            <!-- TODO:copy 経歴を実際の内容に差し替え。架空の社名・学歴を書かないこと -->
+            <dl class="def-list">
+              <div class="def-list__row">
+                <dt class="def-list__term">〇〇年〜現在</dt>
+                <dd class="def-list__desc">ここに所属と担当業務が入ります。</dd>
+              </div>
+              <div class="def-list__row">
+                <dt class="def-list__term">〇〇年〜〇〇年</dt>
+                <dd class="def-list__desc">ここに所属と担当業務が入ります。</dd>
+              </div>
+            </dl>
+          </div>
+
+          <p class="mt-5">
+            <a class="btn btn--primary" href="contact.html">お問い合わせ</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="wave wave--footer" aria-hidden="true">
+    <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+      <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p>&copy; <span data-year>2026</span> Your Name</p>
+      <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">プロフィール</a>
+        <a href="works.html">制作実績</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

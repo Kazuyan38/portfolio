@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>制作実績 | 仮サイト</title>
+  <meta name="description" content="ここに制作実績ページの説明文が入ります。">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <!-- 本公開時にこの draft-banner ごと削除する -->
+  <p class="draft-banner">これは仮サイトです。掲載されている文章・画像・実績はすべてダミーです。</p>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="site-logo" href="index.html">
+        <!-- TODO:copy 名前またはロゴに差し替え -->
+        Your Name
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <ul class="site-nav__list">
+          <li>
+            <a class="site-nav__link" href="index.html">
+              <span class="site-nav__link-en">HOME</span>
+              <span class="site-nav__link-ja">ホーム</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="about.html">
+              <span class="site-nav__link-en">ABOUT</span>
+              <span class="site-nav__link-ja">プロフィール</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="works.html" aria-current="page">
+              <span class="site-nav__link-en">WORKS</span>
+              <span class="site-nav__link-ja">制作実績</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="contact.html">
+              <span class="site-nav__link-en">CONTACT</span>
+              <span class="site-nav__link-ja">お問い合わせ</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section--lead section--surface">
+      <div class="wrap">
+        <h1 class="section-title">
+          <span class="section-title__en">WORKS</span>
+          <span class="section-title__ja">制作実績</span>
+        </h1>
+        <p class="section__desc measure">ここにページの導入文が入ります。</p>
+      </div>
+    </section>
+
+    <div class="wave wave--flip" aria-hidden="true">
+      <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+      </svg>
+    </div>
+
+    <section class="section">
+      <div class="wrap">
+        <!-- main.js が絞り込みボタンをこの直前に挿入する。JS 無効時は全件表示 -->
+        <!-- data-reveal はコンテナに 1 つだけ。カード単位に付けると絞り込み再表示時に
+             未 reveal のカードが opacity: 0 のまま残るため -->
+        <ul class="grid grid--2 grid--3" data-work-list data-reveal>
+          <li class="work-card" data-tags="Web,デザイン">
+            <img class="work-card__media" src="assets/img/works/placeholder-01.svg"
+                 alt="作品 01 のサムネイル画像（プレースホルダ）" width="800" height="500">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="#" data-todo="link">作品タイトル 01</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <ul class="tag-list">
+                <li class="tag">Web</li>
+                <li class="tag">デザイン</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="Web,実装">
+            <img class="work-card__media" src="assets/img/works/placeholder-02.svg"
+                 alt="作品 02 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="#" data-todo="link">作品タイトル 02</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <ul class="tag-list">
+                <li class="tag">Web</li>
+                <li class="tag">実装</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="グラフィック">
+            <img class="work-card__media" src="assets/img/works/placeholder-03.svg"
+                 alt="作品 03 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="#" data-todo="link">作品タイトル 03</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <ul class="tag-list">
+                <li class="tag">グラフィック</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="Web,デザイン,実装">
+            <img class="work-card__media" src="assets/img/works/placeholder-04.svg"
+                 alt="作品 04 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="#" data-todo="link">作品タイトル 04</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <ul class="tag-list">
+                <li class="tag">Web</li>
+                <li class="tag">デザイン</li>
+                <li class="tag">実装</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="グラフィック,デザイン">
+            <img class="work-card__media" src="assets/img/works/placeholder-01.svg"
+                 alt="作品 05 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="#" data-todo="link">作品タイトル 05</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <ul class="tag-list">
+                <li class="tag">グラフィック</li>
+                <li class="tag">デザイン</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="Web">
+            <img class="work-card__media" src="assets/img/works/placeholder-02.svg"
+                 alt="作品 06 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="#" data-todo="link">作品タイトル 06</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <ul class="tag-list">
+                <li class="tag">Web</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <p class="mt-5 text-muted" data-work-empty aria-live="polite" hidden>
+          該当する制作実績はありません。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="wave wave--footer" aria-hidden="true">
+    <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+      <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p>&copy; <span data-year>2026</span> Your Name</p>
+      <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">プロフィール</a>
+        <a href="works.html">制作実績</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

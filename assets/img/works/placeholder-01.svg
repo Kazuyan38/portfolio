@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#e8f1f5"/>
+  <g fill="#9db7c6">
+    <circle cx="286" cy="176" r="44"/>
+    <path d="M120 400l150-150 105 105 130-130 175 175v40H120z"/>
+  </g>
+  <text x="400" y="452" text-anchor="middle" font-family="sans-serif" font-size="30" fill="#4f6270">
+    作品画像 01
+  </text>
+</svg>

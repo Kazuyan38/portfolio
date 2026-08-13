@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>ポートフォリオ | 仮サイト</title>
+  <meta name="description" content="ここにサイトの説明文が入ります。">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <!-- 本公開時にこの draft-banner ごと削除する -->
+  <p class="draft-banner">これは仮サイトです。掲載されている文章・画像・実績はすべてダミーです。</p>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="site-logo" href="index.html">
+        <!-- TODO:copy 名前またはロゴに差し替え -->
+        Your Name
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <ul class="site-nav__list">
+          <li>
+            <a class="site-nav__link" href="index.html" aria-current="page">
+              <span class="site-nav__link-en">HOME</span>
+              <span class="site-nav__link-ja">ホーム</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="about.html">
+              <span class="site-nav__link-en">ABOUT</span>
+              <span class="site-nav__link-ja">プロフィール</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="works.html">
+              <span class="site-nav__link-en">WORKS</span>
+              <span class="site-nav__link-ja">制作実績</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="contact.html">
+              <span class="site-nav__link-en">CONTACT</span>
+              <span class="site-nav__link-ja">お問い合わせ</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero--video">
+      <video class="hero__video" src="assets/video/chaotic-yugen.mp4"
+             autoplay muted loop playsinline aria-hidden="true"></video>
+      <div class="wrap hero__content">
+        <p class="hero__eyebrow">PORTFOLIO</p>
+        <!-- TODO:copy 肩書きとキャッチコピーを差し替え -->
+        <h1 class="hero__title">ここにキャッチコピーが入ります</h1>
+        <p class="hero__lead">
+          ここに自己紹介の要約が入ります。どんな仕事をしていて、何が得意で、
+          どんな依頼を受けられるのかを 2〜3 文で書きます。
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--reverse" href="works.html">制作実績を見る</a>
+          <a class="btn btn--ghost" href="contact.html">お問い合わせ</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="wave" aria-hidden="true">
+      <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+      </svg>
+    </div>
+
+    <section class="section section--surface">
+      <div class="wrap">
+        <div class="section__head" data-reveal>
+          <h2 class="section-title">
+            <span class="section-title__en">WORKS</span>
+            <span class="section-title__ja">最近の制作実績</span>
+          </h2>
+          <p class="section__desc">ここに実績セクションの補足文が入ります。</p>
+        </div>
+
+        <ul class="grid grid--2 grid--3">
+          <li class="work-card" data-reveal>
+            <img class="work-card__media" src="assets/img/works/placeholder-01.svg"
+                 alt="作品 01 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="works.html" data-todo="link">作品タイトル 01</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <ul class="tag-list">
+                <li class="tag">Web</li>
+                <li class="tag">デザイン</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-reveal>
+            <img class="work-card__media" src="assets/img/works/placeholder-02.svg"
+                 alt="作品 02 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="works.html" data-todo="link">作品タイトル 02</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <ul class="tag-list">
+                <li class="tag">Web</li>
+                <li class="tag">実装</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-reveal>
+            <img class="work-card__media" src="assets/img/works/placeholder-03.svg"
+                 alt="作品 03 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 作品名・説明を差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="works.html" data-todo="link">作品タイトル 03</a>
+              </h3>
+              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
+              <ul class="tag-list">
+                <li class="tag">グラフィック</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <p class="mt-5">
+          <a href="works.html">すべての制作実績を見る</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="wave wave--flip" aria-hidden="true">
+      <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+      </svg>
+    </div>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="page-index__cta" data-reveal>
+          <h2 class="section-title section-title--sm">
+            <span class="section-title__en">CONTACT</span>
+            <span class="section-title__ja">お仕事のご相談</span>
+          </h2>
+          <!-- TODO:copy 受付内容を差し替え -->
+          <p class="mt-2">
+            ここに受付中の依頼内容や稼働状況についての説明が入ります。
+          </p>
+          <p class="mt-4">
+            <a class="btn btn--primary" href="contact.html">お問い合わせはこちら</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="wave wave--footer" aria-hidden="true">
+    <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+      <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p>&copy; <span data-year>2026</span> Your Name</p>
+      <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">プロフィール</a>
+        <a href="works.html">制作実績</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

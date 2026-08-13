@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>お問い合わせ | 仮サイト</title>
+  <meta name="description" content="ここにお問い合わせページの説明文が入ります。">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <!-- 本公開時にこの draft-banner ごと削除する -->
+  <p class="draft-banner">これは仮サイトです。掲載されている文章・画像・実績はすべてダミーです。</p>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="site-logo" href="index.html">
+        <!-- TODO:copy 名前またはロゴに差し替え -->
+        Your Name
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <ul class="site-nav__list">
+          <li>
+            <a class="site-nav__link" href="index.html">
+              <span class="site-nav__link-en">HOME</span>
+              <span class="site-nav__link-ja">ホーム</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="about.html">
+              <span class="site-nav__link-en">ABOUT</span>
+              <span class="site-nav__link-ja">プロフィール</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="works.html">
+              <span class="site-nav__link-en">WORKS</span>
+              <span class="site-nav__link-ja">制作実績</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="contact.html" aria-current="page">
+              <span class="site-nav__link-en">CONTACT</span>
+              <span class="site-nav__link-ja">お問い合わせ</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section--lead section--surface">
+      <div class="wrap">
+        <h1 class="section-title">
+          <span class="section-title__en">CONTACT</span>
+          <span class="section-title__ja">お問い合わせ</span>
+        </h1>
+        <!-- TODO:copy 受付内容・返信目安を差し替え -->
+        <p class="section__desc measure">
+          ここに受付中の依頼内容や、返信までの目安についての説明が入ります。
+        </p>
+      </div>
+    </section>
+
+    <div class="wave wave--flip" aria-hidden="true">
+      <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+        <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+      </svg>
+    </div>
+
+    <section class="section">
+      <div class="wrap measure">
+        <!-- TODO:copy 連絡先を実際のものに差し替え。example.com はダミードメイン -->
+        <dl class="contact-list" data-reveal>
+          <div class="contact-list__row">
+            <dt class="contact-list__label">メール</dt>
+            <dd>
+              <a href="mailto:your-name@example.com" data-todo="link">your-name@example.com</a>
+            </dd>
+          </div>
+          <div class="contact-list__row">
+            <dt class="contact-list__label">SNS</dt>
+            <dd>
+              <a href="#" data-todo="link">アカウント名（未設定）</a>
+            </dd>
+          </div>
+          <div class="contact-list__row">
+            <dt class="contact-list__label">所在地</dt>
+            <dd>ここに活動拠点が入ります。</dd>
+          </div>
+        </dl>
+
+        <div class="flow mt-5" data-reveal>
+          <h2 class="section-title section-title--sm">
+            <span class="section-title__en">FLOW</span>
+            <span class="section-title__ja">ご依頼の流れ</span>
+          </h2>
+          <!-- TODO:copy 実際の流れに差し替え -->
+          <ol class="flow">
+            <li>メールにてご相談内容をお送りください。</li>
+            <li>内容を確認し、お見積りとスケジュールをご提案します。</li>
+            <li>条件に合意のうえ、制作を開始します。</li>
+          </ol>
+        </div>
+
+        <p class="text-muted mt-5">
+          ※ 現在このサイトは仮公開のため、フォームは設置していません。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="wave wave--footer" aria-hidden="true">
+    <svg class="wave__svg" viewBox="0 0 2880 60" preserveAspectRatio="none" focusable="false">
+      <path d="M0,30 C240,58 480,2 720,30 C960,58 1200,2 1440,30 C1680,58 1920,2 2160,30 C2400,58 2640,2 2880,30 L2880,60 L0,60 Z"/>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p>&copy; <span data-year>2026</span> Your Name</p>
+      <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">プロフィール</a>
+        <a href="works.html">制作実績</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
