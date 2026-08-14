@@ -44,9 +44,10 @@ assets/
   img/
     bg-yugen.webp   全ページ共通の固定背景アート
     profile-placeholder.svg
-    works/          作品画像
+    works/          作品画像・実績動画のポスター（*-poster.webp）
   video/
-    chaotic-yugen.mp4   トップのヒーロー背景動画
+    chaotic-yugen.mp4   トップのヒーロー背景動画（works の実績カードでも使用）
+    *.mp4               制作実績の作品動画（works.html のカードから参照）
 ```
 
 **コンテンツの単一の情報源は HTML**。作品一覧などの本文を `data.js` に持たせて JS で描画しない（JS 無効時に何も表示されなくなるため）。`data.js` が持つのは UI 文言や設定値だけ。
@@ -196,6 +197,7 @@ window.Portfolio.works = [ /* … */ ];
   - 停止ボタンは置かない（WCAG 2.2.2 に対する仮サイトの割り切り。判断は DESIGN.md 5 章、公開時の再検討はチェックリスト参照）
   - `prefers-reduced-motion: reduce` で `display: none`
   - 実装例はトップの `.hero--video` 一式
+- 実績カード等の**コンテンツ動画**は背景動画と別ルール。`controls preload="metadata" playsinline poster width height aria-label` を付け、**autoplay しない**（自動再生しないので reduced-motion の特別対応も WCAG 2.2.2 の停止手段も不要）。レイアウトは `.work-card__media--video`（contain + `--c-bg` レターボックス。判断は DESIGN.md 5 章）。実装例は works.html の作品カード
 
 ## 仮コンテンツの扱い
 
@@ -224,12 +226,13 @@ Select-String -Path *.html -Pattern 'TODO:copy|data-todo'
 
 このリストの項目は、公開が決まるまで対応不要。
 
-- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 35 箇所）
+- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 36 箇所）
 - [ ] `.draft-banner` の削除（全 4 ページ + CSS）
-- [ ] プレースホルダ SVG を実際の作品画像（`.webp`）に差し替え
+- [ ] プロフィールのプレースホルダ SVG（`profile-placeholder.svg`）を実写真に差し替え（作品カードは実動画・実ポスターに置換済み。未参照になった works/placeholder-0*.svg は削除済み）
 - [ ] `<title>` と `meta description` をページごとに固有の内容へ
 - [ ] OGP / favicon の追加
 - [ ] 連絡先の実アドレス化（スパム対策を検討）
-- [ ] ヒーロー動画の再エンコード（現状 34MB / 27.5Mbps はローカル専用。Web 配信するなら 3〜5Mbps・5MB 前後へ圧縮し、`poster` 画像の追加も検討）
+- [x] ヒーロー・実績動画の再エンコード（3〜5Mbps 前後へ圧縮済み。合計 108MB → 30MB）
+- [ ] 実績動画の再エンコード（`assets/video/` 計約 105MB はローカル専用。特に seichi-na-sekai.mp4 40MB / robot-cinematic.mp4 18MB。Web 配信時は圧縮するか、動画ホスティングへの移行を検討）
 - [ ] ヒーロー動画の停止手段を再検討（WCAG 2.2.2 レベル A。仮サイトの間は停止ボタンを置かない判断 — DESIGN.md 5 章）
 - [ ] 公開先が確定したら、`file://` 制約の解除可否を再検討する（サーバー配信になれば modules と fetch が解禁され、ルールを緩められる）

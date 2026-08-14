@@ -588,6 +588,30 @@ ol.flow--steps {
   font-size: var(--fs-sm);
 }
 
+/* 実績カードの動画（コンテンツ動画）。縦型〜シネスコまで混在するため
+   8/5 枠に contain で収め、レターボックスは 60% キャンバス色で沈める。
+   判断の根拠は DESIGN.md 5 章 */
+.work-card__media--video {
+  /* video は Reset の img,svg ブロック対象外。height: auto が無いと
+     HTML の height 属性が CSS height として効き、aspect-ratio 8/5 が死ぬ */
+  display: block;
+  height: auto;
+  object-fit: contain;
+  background-color: var(--c-bg);
+}
+
+/* カードの overflow: hidden が外側 3px のグローバルリングを 3 辺で切るため、
+   動画は内側に引いたリングで代替する（フォーカスリングを消さない規則） */
+.work-card__media--video:focus-visible {
+  outline-offset: -4px;
+}
+
+/* コンテンツ動画はホバーズームの対象外。contain で確保した作品の端が
+   overflow: hidden で切れ、操作中のコントロールも動くため（DESIGN.md 5 章） */
+.work-card:hover .work-card__media--video {
+  transform: none;
+}
+
 /* --- Tag --- */
 .tag-list {
   display: flex;

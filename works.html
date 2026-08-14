@@ -12,7 +12,7 @@
   <a class="skip-link" href="#main">本文へスキップ</a>
 
   <!-- 本公開時にこの draft-banner ごと削除する -->
-  <p class="draft-banner">これは仮サイトです。掲載されている文章・画像・実績はすべてダミーです。</p>
+  <p class="draft-banner">これは仮サイトです。文章・画像の一部はダミーです。</p>
 
   <header class="site-header">
     <div class="wrap site-header__inner">
@@ -75,104 +75,400 @@
         <!-- main.js が絞り込みボタンをこの直前に挿入する。JS 無効時は全件表示 -->
         <!-- data-reveal はコンテナに 1 つだけ。カード単位に付けると絞り込み再表示時に
              未 reveal のカードが opacity: 0 のまま残るため -->
+        <!-- 実績動画はコンテンツ動画（背景動画と別ルール）。autoplay せず
+             controls + preload="metadata" + poster。CLAUDE.md「動画」参照 -->
         <ul class="grid grid--2 grid--3" data-work-list data-reveal>
-          <li class="work-card" data-tags="Web,デザイン">
-            <img class="work-card__media" src="assets/img/works/placeholder-01.svg"
-                 alt="作品 01 のサムネイル画像（プレースホルダ）" width="800" height="500">
+          <li class="work-card" data-tags="モーショングラフィックス">
+            <video class="work-card__media work-card__media--video"
+                   src="assets/video/seichi-na-sekai.mp4"
+                   poster="assets/img/works/seichi-na-sekai-poster.webp"
+                   controls preload="metadata" playsinline
+                   width="1080" height="1920"
+                   aria-label="作品「精緻な世界」の動画">
+              お使いの環境では動画を再生できません。
+            </video>
             <div class="work-card__body">
-              <!-- TODO:copy 作品名・説明を差し替え -->
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="#" data-todo="link">作品タイトル 01</a>
-              </h3>
-              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
-              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <!-- TODO:copy 作品名・説明はファイル名と映像内容からの仮置き。正式名称を確認して差し替え -->
+              <h3 class="work-card__title">精緻な世界</h3>
+              <p class="work-card__desc">オイラーの等式を主題にした 60 秒の縦型モーショングラフィックス。手描き風のノートと幾何図形のアニメーションで、数式の背後にある世界を描いた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
-                <li class="tag">Web</li>
-                <li class="tag">デザイン</li>
+                <li class="tag">モーショングラフィックス</li>
               </ul>
             </div>
           </li>
 
-          <li class="work-card" data-tags="Web,実装">
-            <img class="work-card__media" src="assets/img/works/placeholder-02.svg"
-                 alt="作品 02 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+          <li class="work-card" data-tags="3DCG">
+            <video class="work-card__media work-card__media--video"
+                   src="assets/video/chaotic-yugen.mp4"
+                   poster="assets/img/works/chaotic-yugen-poster.webp"
+                   controls preload="metadata" playsinline
+                   width="1920" height="804"
+                   aria-label="作品「Chaotic Yugen」の動画">
+              お使いの環境では動画を再生できません。
+            </video>
             <div class="work-card__body">
-              <!-- TODO:copy 作品名・説明を差し替え -->
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="#" data-todo="link">作品タイトル 02</a>
-              </h3>
-              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
-              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <!-- TODO:copy 作品名・説明はファイル名と映像内容からの仮置き。正式名称を確認して差し替え -->
+              <h3 class="work-card__title">Chaotic Yugen</h3>
+              <p class="work-card__desc">無数の破片が渦を巻き、赤い核へ収束していく抽象 3DCG アニメーション。本サイトのトップページでヒーロー背景映像としても使用している。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
-                <li class="tag">Web</li>
-                <li class="tag">実装</li>
+                <li class="tag">3DCG</li>
               </ul>
             </div>
           </li>
 
-          <li class="work-card" data-tags="グラフィック">
-            <img class="work-card__media" src="assets/img/works/placeholder-03.svg"
-                 alt="作品 03 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+          <li class="work-card" data-tags="3DCG">
+            <video class="work-card__media work-card__media--video"
+                   src="assets/video/robot-cinematic.mp4"
+                   poster="assets/img/works/robot-cinematic-poster.webp"
+                   controls preload="metadata" playsinline
+                   width="1088" height="462"
+                   aria-label="作品「Robot Cinematic」の動画">
+              お使いの環境では動画を再生できません。
+            </video>
             <div class="work-card__body">
-              <!-- TODO:copy 作品名・説明を差し替え -->
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="#" data-todo="link">作品タイトル 03</a>
-              </h3>
-              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
-              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <!-- TODO:copy 作品名・説明はファイル名と映像内容からの仮置き。正式名称を確認して差し替え -->
+              <h3 class="work-card__title">Robot Cinematic</h3>
+              <p class="work-card__desc">金属片が集積してロボットの姿を成し、二体が対峙するまでを描いたシネマティック映像。Blender で制作。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
-                <li class="tag">グラフィック</li>
+                <li class="tag">3DCG</li>
               </ul>
             </div>
           </li>
 
-          <li class="work-card" data-tags="Web,デザイン,実装">
-            <img class="work-card__media" src="assets/img/works/placeholder-04.svg"
-                 alt="作品 04 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+          <li class="work-card" data-tags="3DCG">
+            <video class="work-card__media work-card__media--video"
+                   src="assets/video/yozora-hotaru.mp4"
+                   poster="assets/img/works/yozora-hotaru-poster.webp"
+                   controls preload="metadata" playsinline
+                   width="1920" height="1080"
+                   aria-label="作品「夜空蛍」の動画">
+              お使いの環境では動画を再生できません。
+            </video>
             <div class="work-card__body">
-              <!-- TODO:copy 作品名・説明を差し替え -->
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="#" data-todo="link">作品タイトル 04</a>
-              </h3>
-              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
-              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <!-- TODO:copy 作品名・説明はファイル名と映像内容からの仮置き。正式名称を確認して差し替え -->
+              <h3 class="work-card__title">夜空蛍</h3>
+              <p class="work-card__desc">月明かりの窓辺から、蛍の光が舞う雪のローポリの森へ。夜の情景をつないだ短編アニメーション。Blender で制作。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
-                <li class="tag">Web</li>
-                <li class="tag">デザイン</li>
-                <li class="tag">実装</li>
+                <li class="tag">3DCG</li>
               </ul>
             </div>
           </li>
 
-          <li class="work-card" data-tags="グラフィック,デザイン">
-            <img class="work-card__media" src="assets/img/works/placeholder-01.svg"
-                 alt="作品 05 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+          <li class="work-card" data-tags="3DCG">
+            <video class="work-card__media work-card__media--video"
+                   src="assets/video/yugen-sphere.mp4"
+                   poster="assets/img/works/yugen-sphere-poster.webp"
+                   controls preload="metadata" playsinline
+                   width="1920" height="1080"
+                   aria-label="作品「Yugen Sphere」の動画">
+              お使いの環境では動画を再生できません。
+            </video>
             <div class="work-card__body">
-              <!-- TODO:copy 作品名・説明を差し替え -->
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="#" data-todo="link">作品タイトル 05</a>
-              </h3>
-              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
-              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <!-- TODO:copy 作品名・説明はファイル名と映像内容からの仮置き。正式名称を確認して差し替え -->
+              <h3 class="work-card__title">Yugen Sphere</h3>
+              <p class="work-card__desc">惑星を思わせる球体のまわりを、軌道と結晶が静かに巡るループアニメーション。Blender で制作。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
-                <li class="tag">グラフィック</li>
-                <li class="tag">デザイン</li>
+                <li class="tag">3DCG</li>
               </ul>
             </div>
           </li>
 
-          <li class="work-card" data-tags="Web">
-            <img class="work-card__media" src="assets/img/works/placeholder-02.svg"
-                 alt="作品 06 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
+          <li class="work-card" data-tags="モーショングラフィックス">
+            <video class="work-card__media work-card__media--video"
+                   src="assets/video/art-site-movement.mp4"
+                   poster="assets/img/works/art-site-movement-poster.webp"
+                   controls preload="metadata" playsinline
+                   width="640" height="360"
+                   aria-label="作品「Art Site Movement」の動画">
+              お使いの環境では動画を再生できません。
+            </video>
             <div class="work-card__body">
-              <!-- TODO:copy 作品名・説明を差し替え -->
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="#" data-todo="link">作品タイトル 06</a>
-              </h3>
-              <p class="work-card__desc">ここに作品の概要が入ります。担当範囲と成果を 1〜2 文で書きます。</p>
-              <p class="work-card__meta">〇〇年 / 担当：〇〇</p>
+              <!-- TODO:copy 作品名・説明はファイル名と映像内容からの仮置き。正式名称を確認して差し替え -->
+              <h3 class="work-card__title">Art Site Movement</h3>
+              <p class="work-card__desc">幾何学のワイヤーフレームが組み変わり続けるモーションスタディ。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
-                <li class="tag">Web</li>
+                <li class="tag">モーショングラフィックス</li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- ここからイラスト作品（Google ドライブ「写真集」フォルダより。
+               タイトルはドライブ上の作品名。サムネイルは 8/5 でトリミング表示し、
+               タイトルのリンクから原寸画像を開ける -->
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/futago-to-mirai.webp"
+                 alt="作品「双子と未来」。古典油彩の様式で向かい合う二人を描いた肖像画" width="800" height="1104" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/futago-to-mirai.webp">双子と未来</a>
+              </h3>
+              <p class="work-card__desc">古典絵画の様式で向かい合う二人を描いた二重肖像。名前と生年、宝石の銘を画面上部に添えた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/shinwa-to-kagaku.webp"
+                 alt="作品「神話と科学」。万華鏡のような文様に覆われた人物を聖堂のドームを背に描いたサイケデリックな肖像" width="768" height="1364" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/shinwa-to-kagaku.webp">神話と科学</a>
+              </h3>
+              <p class="work-card__desc">渦巻く文様が全身と髪を覆う人物を、聖堂のドームを背にして描いたサイケデリックな肖像。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/ichizu-no-hikari.webp"
+                 alt="作品「一途の光」。雨の街で、光の差す窓に向かって手を伸ばす少年の後ろ姿" width="800" height="1066" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/ichizu-no-hikari.webp">一途の光</a>
+              </h3>
+              <p class="work-card__desc">雨に沈む夜の街で、ただ一つ光の差す窓へ手を伸ばす少年を描いたペインティング。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/ukiyo-jigazou.webp"
+                 alt="作品「浮世自画像」。障子越しに月と富士を望む、浮世絵様式の横顔の自画像" width="800" height="1066" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/ukiyo-jigazou.webp">浮世自画像</a>
+              </h3>
+              <p class="work-card__desc">浮世絵の様式で描いた自画像。開いた障子の向こうに月と富士、波を配した。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/kibou-to-kodoku-to-saisei.webp"
+                 alt="作品「希望と孤独と再生」。孤独・再生・希望の文字が並ぶグラフィティの壁と、椅子にうずくまる人物のステンシル画" width="800" height="1066" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/kibou-to-kodoku-to-saisei.webp">希望と孤独と再生</a>
+              </h3>
+              <p class="work-card__desc">「孤独」「再生」「希望」の文字が躍るグラフィティの壁の前で、うずくまる人物をステンシルアートの手法で描いた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/high-school-yankee.webp"
+                 alt="作品「ハイスクールヤンキー」。花火の上がる夜、キャップとサングラスの少年を油彩のタッチで描いた一枚" width="800" height="444" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/high-school-yankee.webp">ハイスクールヤンキー</a>
+              </h3>
+              <p class="work-card__desc">花火の開く夜を背に、指を組んでうつむく少年を油彩のタッチで描いた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/seni-to-katsubou.webp"
+                 alt="作品「繊維と渇望」。締切やエラーコードの帯が顔から溢れ出す、机に向かう人物のシュルレアリスム的な油彩画" width="800" height="1068" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/seni-to-katsubou.webp">繊維と渇望</a>
+              </h3>
+              <p class="work-card__desc">締切・エラー・未読の通知が煙となって顔から溢れ出す。歪む時計とともに、机に向かう日々をシュルレアリスム的に描いた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/soleil-couchant.webp"
+                 alt="作品「Soleil couchant」。天使と群衆と道化を装飾的な額縁に収めたダークファンタジー調の一枚" width="800" height="800" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/soleil-couchant.webp">Soleil couchant</a>
+              </h3>
+              <p class="work-card__desc">沈む太陽の下、天使と群衆と道化がひしめく光景を装飾的な額縁に収めた、アルバムアート風のダークファンタジー。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/daigaku-to-taiyou.webp"
+                 alt="作品「大学と太陽」。渦巻く星空の下のキャンパスの夜景を、ゴッホ「星月夜」の筆致で描いた風景画" width="800" height="602" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/daigaku-to-taiyou.webp">大学と太陽</a>
+              </h3>
+              <p class="work-card__desc">渦巻く星空と三日月の下のキャンパスを、「星月夜」を思わせる筆致で描いた夜景。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/neon-end.webp"
+                 alt="作品「ネオンエンド」。ネオン輝くドット絵の都市に MV クレジットを重ねたピクセルアート" width="800" height="436" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/neon-end.webp">ネオンエンド</a>
+              </h3>
+              <p class="work-card__desc">ネオン看板がひしめくドット絵の都市に、MV のエンドクレジットを重ねたピクセルアート。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/kazuya.webp"
+                 alt="作品「kazuya」。道化のキャラクターの表情・装具・タトゥーをまとめた設定画シート" width="800" height="800" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/kazuya.webp">kazuya</a>
+              </h3>
+              <p class="work-card__desc">道化のキャラクター「Kazuya」の設定画。表情のバリエーションから装具・タトゥーの細部までを 1 枚のシートにまとめた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/boy-living-in-the-twilight.webp"
+                 alt="作品「BOY LIVING IN THE TWILIGHT」。夜の高架下を駆けるパーカーの少年を描いたコミックカバー風イラスト" width="800" height="932" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/boy-living-in-the-twilight.webp">BOY LIVING IN THE TWILIGHT</a>
+              </h3>
+              <p class="work-card__desc">夜の高架下を駆けるパーカーの少年を、タイトルロゴとともにコミックのカバー風に仕立てた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/neon-friends-drive.webp"
+                 alt="作品「ネオンフレンズドライブ」。ネオン街をクラシックカーで行く仲間たちを描いたイラスト" width="800" height="920" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/neon-friends-drive.webp">ネオンフレンズドライブ</a>
+              </h3>
+              <p class="work-card__desc">漢字のネオンが灯る未来の路地を、クラシックカーに乗り合わせた仲間たちが行くドライブの一場面。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/my-life.webp"
+                 alt="作品「My LIFe」。渦巻く青の背景に学生服の人物を描いたゴッホ風の自画像" width="800" height="948" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/my-life.webp">My LIFe</a>
+              </h3>
+              <p class="work-card__desc">渦巻く青を背に、学生服の人物を印象派の筆致で描いた自画像風の一枚。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/mikazuki-to-tsukimisou.webp"
+                 alt="作品「三日月と月見草」。三日月を背にうつむく人物をモノクロのコラージュ調で描いた" width="800" height="800" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/mikazuki-to-tsukimisou.webp">三日月と月見草</a>
+              </h3>
+              <p class="work-card__desc">三日月の浮かぶ夜、うつむく横顔を幾何学的なモノクロのコラージュ調で描いた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/neon-na-wareware.webp"
+                 alt="作品「ネオンな我々」。ネオン看板の灯る夜の路地に佇む二人を描いたイラスト" width="800" height="544" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/neon-na-wareware.webp">ネオンな我々</a>
+              </h3>
+              <p class="work-card__desc">ネオン看板の灯る夜の路地。ベンチに座る人と壁にもたれる人、二人の間の沈黙を描いた。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="work-card" data-tags="アート">
+            <img class="work-card__media" src="assets/img/works/ceiling-chronos.webp"
+                 alt="作品「CEILING CHRONOS」。時計を宿す白い巨人とこちらを指差す人物を劇画調で描いたイラスト" width="800" height="1032" loading="lazy">
+            <div class="work-card__body">
+              <!-- TODO:copy 説明は画像内容からの仮置き。必要なら差し替え -->
+              <h3 class="work-card__title">
+                <a class="work-card__link" href="assets/img/works/ceiling-chronos.webp">CEILING CHRONOS</a>
+              </h3>
+              <p class="work-card__desc">時計を宿す白い巨人を従え、こちらを指差す人物。能力チャートまで添えた劇画調のパロディイラスト。</p>
+              <p class="work-card__meta">2026年 / 個人制作</p>
+              <ul class="tag-list">
+                <li class="tag">アート</li>
               </ul>
             </div>
           </li>
