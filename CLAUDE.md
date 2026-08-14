@@ -226,7 +226,7 @@ Select-String -Path *.html -Pattern 'TODO:copy|data-todo'
 
 このリストの項目は、公開が決まるまで対応不要。
 
-- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 36 箇所）
+- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 32 箇所）
 - [ ] `.draft-banner` の削除（全 4 ページ + CSS）
 - [ ] プロフィールのプレースホルダ SVG（`profile-placeholder.svg`）を実写真に差し替え（作品カードは実動画・実ポスターに置換済み。未参照になった works/placeholder-0*.svg は削除済み）
 - [ ] `<title>` と `meta description` をページごとに固有の内容へ

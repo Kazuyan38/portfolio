@@ -305,17 +305,6 @@ ol.flow--steps {
   color: var(--c-accent-text);
 }
 
-/* --- Draft banner（本公開時にこのブロックごと削除する。
-       あえてブランド外のアンバー = 警告として機能させる） --- */
-.draft-banner {
-  padding: var(--sp-2) var(--sp-3);
-  background-color: #3b2f0b;
-  color: #fde68a;
-  font-size: var(--fs-sm);
-  text-align: center;
-  line-height: 1.6;
-}
-
 /* --- Header --- */
 .site-header {
   border-bottom: 1px solid var(--c-border);
