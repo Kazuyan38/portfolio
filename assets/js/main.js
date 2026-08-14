@@ -15,10 +15,13 @@
      コンテンツが一瞬見えてから隠れるちらつきが出る。
      JS 無効・IntersectionObserver 非対応・reduced-motion では属性が付かず、
      CSS の非表示化が一切発動しない（常時表示のフォールバック）。 */
+  function prefersReducedMotion() {
+    return !!(window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
   function canReveal() {
-    return 'IntersectionObserver' in window &&
-      !(window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    return 'IntersectionObserver' in window && !prefersReducedMotion();
   }
 
   if (canReveal()) {
@@ -49,6 +52,21 @@
     for (i = 0; i < targets.length; i += 1) {
       observer.observe(targets[i]);
     }
+  }
+
+  /* --- 背景動画の制御 --- */
+  /* reduced-motion では CSS が display:none にするが、それだけでは動画を
+     ダウンロードしてしまうため、自動再生と先読みも止める。
+     停止ボタンは置かない（ユーザー決定。DESIGN.md 5章の判断記録） */
+  function initHeroVideo() {
+    var video = document.querySelector('[data-hero-video]');
+    if (!video || !prefersReducedMotion()) {
+      return;
+    }
+
+    video.removeAttribute('autoplay');
+    video.preload = 'none';
+    video.pause();
   }
 
   /* --- フッターの年号を現在年に更新 --- */
@@ -138,6 +156,12 @@
 
     var empty = document.querySelector('[data-work-empty]');
     var tags = [ALL].concat(collectTags(cards));
+
+    /* Hick の法則: 絞り込みタブは最大 7（DESIGN.md 5章）。超えたら統廃合を検討 */
+    if (tags.length > 7) {
+      console.warn('絞り込みタブが ' + tags.length + ' 件あります。DESIGN.md 5章の上限は 7 件です。タグの統廃合を検討してください。');
+    }
+
     var group = buildFilter(tags);
 
     list.parentNode.insertBefore(group, list);
@@ -160,6 +184,7 @@
   }
 
   function init() {
+    initHeroVideo();
     initYear();
     initWorkFilter();
     initReveal();

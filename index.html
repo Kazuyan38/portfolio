@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <title>ポートフォリオ | 仮サイト</title>
-  <meta name="description" content="ここにサイトの説明文が入ります。">
+  <title>Kazuma Miura | 3DCGとテクノロジーで作るポートフォリオ</title>
+  <meta name="description" content="3DCGとアプリ開発、Webデザインを横断しながら、CGを転じたアート作品まで手がけるKazuma Miuraのポートフォリオです。">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -17,8 +17,7 @@
   <header class="site-header">
     <div class="wrap site-header__inner">
       <a class="site-logo" href="index.html">
-        <!-- TODO:copy 名前またはロゴに差し替え -->
-        Your Name
+        Kazuma Miura
       </a>
       <nav class="site-nav" aria-label="メインナビゲーション">
         <ul class="site-nav__list">
@@ -53,18 +52,18 @@
 
   <main id="main">
     <section class="hero hero--video">
-      <video class="hero__video" src="assets/video/chaotic-yugen.mp4"
+      <video class="hero__video" src="assets/video/chaotic-yugen.mp4" data-hero-video
              autoplay muted loop playsinline aria-hidden="true"></video>
       <div class="wrap hero__content">
         <p class="hero__eyebrow">PORTFOLIO</p>
-        <!-- TODO:copy 肩書きとキャッチコピーを差し替え -->
-        <h1 class="hero__title">ここにキャッチコピーが入ります</h1>
+        <h1 class="hero__title">細部に神は宿り、そこから革命が生まれる。</h1>
         <p class="hero__lead">
-          ここに自己紹介の要約が入ります。どんな仕事をしていて、何が得意で、
-          どんな依頼を受けられるのかを 2〜3 文で書きます。
+          一つのピクセル、一行のコード、ひとひらの陰影。小さな祈りにも似たこだわりが、
+          まだ見ぬ世界の扉を開いていく。3DCG、アプリ開発、Webデザイン、そしてCGを纏うアート——
+          領域を越えて、細部に宿る神とともに、静かな革命を紡いでいます。
         </p>
         <div class="hero__actions">
-          <a class="btn btn--reverse" href="works.html">制作実績を見る</a>
+          <a class="btn btn--primary" href="works.html">制作実績を見る</a>
           <a class="btn btn--ghost" href="contact.html">お問い合わせ</a>
         </div>
       </div>
@@ -83,11 +82,14 @@
             <span class="section-title__en">WORKS</span>
             <span class="section-title__ja">最近の制作実績</span>
           </h2>
+          <!-- TODO:copy -->
           <p class="section__desc">ここに実績セクションの補足文が入ります。</p>
         </div>
 
-        <ul class="grid grid--2 grid--3">
-          <li class="work-card" data-reveal>
+        <!-- data-reveal はコンテナに 1 つだけ。カード個別に付けると reveal の
+             transform: none がホバーリフトを上書きして動かなくなる -->
+        <ul class="grid grid--2 grid--3" data-reveal>
+          <li class="work-card">
             <img class="work-card__media" src="assets/img/works/placeholder-01.svg"
                  alt="作品 01 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
             <div class="work-card__body">
@@ -103,7 +105,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-reveal>
+          <li class="work-card">
             <img class="work-card__media" src="assets/img/works/placeholder-02.svg"
                  alt="作品 02 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
             <div class="work-card__body">
@@ -119,7 +121,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-reveal>
+          <li class="work-card">
             <img class="work-card__media" src="assets/img/works/placeholder-03.svg"
                  alt="作品 03 のサムネイル画像（プレースホルダ）" width="800" height="500" loading="lazy">
             <div class="work-card__body">
@@ -154,9 +156,10 @@
             <span class="section-title__en">CONTACT</span>
             <span class="section-title__ja">お仕事のご相談</span>
           </h2>
-          <!-- TODO:copy 受付内容を差し替え -->
           <p class="mt-2">
-            ここに受付中の依頼内容や稼働状況についての説明が入ります。
+            企業案件から個人のクリエイティブな挑戦まで、幅広くご依頼を承っております。
+            3DCG制作、アプリ開発、Webデザイン、CGアート作品まで、ジャンルを問いません。
+            まずはお気軽にご連絡ください。
           </p>
           <p class="mt-4">
             <a class="btn btn--primary" href="contact.html">お問い合わせはこちら</a>
@@ -174,7 +177,7 @@
 
   <footer class="site-footer">
     <div class="wrap site-footer__inner">
-      <p>&copy; <span data-year>2026</span> Your Name</p>
+      <p>&copy; <span data-year>2026</span> Kazuma Miura</p>
       <nav class="site-footer__nav" aria-label="フッターナビゲーション">
         <a href="index.html">ホーム</a>
         <a href="about.html">プロフィール</a>

@@ -6,7 +6,7 @@
 :root {
   color-scheme: dark;
 
-  /* Color — 60-30-10（60=夜の海キャンバス / 30=藍鉄サーフェス / 10=月白アクセント）。
+  /* Color — 60-30-10（60=夜の海キャンバス / 30=藍鉄サーフェス / 10=白群アクセント）。
      accent-2 は非テキスト UI 限定 */
   --c-bg: #041f2f;           /* 濃藍 */
   --c-surface: #0b3348;      /* 藍鉄 */
@@ -250,6 +250,12 @@ body::before {
   margin-top: var(--sp-3);
 }
 
+/* 手順リスト: リセットの ol[class] が消す番号を復元する（要素付きセレクタで詳細度を揃える） */
+ol.flow--steps {
+  padding-inline-start: 1.5em;
+  list-style: decimal;
+}
+
 @media (min-width: 600px) {
   .wrap {
     padding-inline: var(--sp-4);
@@ -446,6 +452,7 @@ body::before {
   outline-color: var(--c-on-media);
 }
 
+
 .hero__title {
   max-width: 20ch;
   /* 明朝は 600・--fs-xl 以上のみ（DESIGN.md 3章）。ここは --fs-2xl なので可 */
@@ -514,16 +521,6 @@ body::before {
 .btn--ghost:hover {
   border-color: var(--c-accent);
   color: var(--c-accent);
-}
-
-.btn--reverse {
-  background-color: var(--c-accent-text);
-  color: var(--c-accent);
-}
-
-.btn--reverse:hover {
-  background-color: var(--c-accent-text);
-  color: var(--c-accent-hover);
 }
 
 /* --- Work card --- */
@@ -602,7 +599,7 @@ body::before {
   padding: 0 var(--sp-2);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xs);
-  background-color: var(--c-surface);
+  background-color: var(--c-bg);   /* 掘り込み: surface 面の上では 60 の色で沈める（DESIGN.md 2章） */
   color: var(--c-text-muted);
   font-size: var(--fs-sm);
   line-height: 1.9;
@@ -621,7 +618,7 @@ body::before {
 
 .filter__btn {
   min-height: var(--tap-min);   /* Fitts */
-  margin-bottom: -1px;
+  margin-bottom: -1px;   /* スケール外の直値: 親 .filter の下線に自分の下線を重ねる技法 */
   padding: var(--sp-2) var(--sp-3);
   border: 0;
   border-bottom: 2px solid transparent;
@@ -646,7 +643,7 @@ body::before {
 
 /* --- Profile --- */
 .profile__photo {
-  width: 200px;
+  width: 200px;   /* 固定 px の例外: 円形クロップの直径。リセットの max-width:100% が狭幅の保険 */
   border-radius: 50%;
 }
 

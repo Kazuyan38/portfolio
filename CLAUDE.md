@@ -132,7 +132,7 @@ BEM を簡略化した `block__element--modifier` を使う。
 - ID セレクタでスタイルを当てない（ID はアンカーと JS の取得用）
 - `style` 属性（インラインスタイル）を書かない。1 プロパティだけの調整は `Utilities` の `.mt-4` 等を使い、無ければ追加する
 - JS が付け外しするフックは属性セレクタ（`[data-work-list]`）にし、スタイル用のクラス名を JS から参照しない
-- `!important` は使わない
+- `!important` は使わない（唯一の例外は Base の reduced-motion リセットブロック）
 - ネストの深さは 2 レベルまで
 - 要素セレクタ単体（`div`, `p`）へのスタイルは `Base` セクションのみ
 
@@ -191,7 +191,9 @@ window.Portfolio.works = [ /* … */ ];
 - 装飾用の背景動画は次をセットで守る。1 つでも欠けると特定環境で壊れる
   - `autoplay muted loop playsinline aria-hidden="true"`（属性のみで動く = JS 無効でも再生される。音声トラックは入れない）
   - ネイビーのオーバーレイ（`--c-overlay`）+ 白文字（`--c-on-media`）でコントラストを動画の内容に依存させない
-  - コンテナにフォールバック背景色（`--c-accent`）。動画が出ない環境でも白文字が読める
+  - コンテナにフォールバック背景色（`--c-surface`。面にアクセントを塗らない — DESIGN.md 2 章）。動画が出ない環境でも白文字が読める
+  - reduced-motion では CSS の `display: none` に加え、JS が `autoplay` 除去・`preload="none"`・`pause()` でダウンロード自体を止める（非表示だけでは読み込まれる）
+  - 停止ボタンは置かない（WCAG 2.2.2 に対する仮サイトの割り切り。判断は DESIGN.md 5 章、公開時の再検討はチェックリスト参照）
   - `prefers-reduced-motion: reduce` で `display: none`
   - 実装例はトップの `.hero--video` 一式
 
@@ -222,11 +224,12 @@ Select-String -Path *.html -Pattern 'TODO:copy|data-todo'
 
 このリストの項目は、公開が決まるまで対応不要。
 
-- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 32 箇所）
+- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 35 箇所）
 - [ ] `.draft-banner` の削除（全 4 ページ + CSS）
 - [ ] プレースホルダ SVG を実際の作品画像（`.webp`）に差し替え
 - [ ] `<title>` と `meta description` をページごとに固有の内容へ
 - [ ] OGP / favicon の追加
 - [ ] 連絡先の実アドレス化（スパム対策を検討）
 - [ ] ヒーロー動画の再エンコード（現状 34MB / 27.5Mbps はローカル専用。Web 配信するなら 3〜5Mbps・5MB 前後へ圧縮し、`poster` 画像の追加も検討）
+- [ ] ヒーロー動画の停止手段を再検討（WCAG 2.2.2 レベル A。仮サイトの間は停止ボタンを置かない判断 — DESIGN.md 5 章）
 - [ ] 公開先が確定したら、`file://` 制約の解除可否を再検討する（サーバー配信になれば modules と fetch が解禁され、ルールを緩められる）
