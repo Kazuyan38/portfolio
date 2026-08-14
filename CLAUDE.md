@@ -233,6 +233,5 @@ Select-String -Path *.html -Pattern 'TODO:copy|data-todo'
 - [ ] OGP / favicon の追加
 - [ ] 連絡先の実アドレス化（スパム対策を検討）
 - [x] ヒーロー・実績動画の再エンコード（3〜5Mbps 前後へ圧縮済み。合計 108MB → 30MB）
-- [ ] 実績動画の再エンコード（`assets/video/` 計約 105MB はローカル専用。特に seichi-na-sekai.mp4 40MB / robot-cinematic.mp4 18MB。Web 配信時は圧縮するか、動画ホスティングへの移行を検討）
 - [ ] ヒーロー動画の停止手段を再検討（WCAG 2.2.2 レベル A。仮サイトの間は停止ボタンを置かない判断 — DESIGN.md 5 章）
 - [ ] 公開先が確定したら、`file://` 制約の解除可否を再検討する（サーバー配信になれば modules と fetch が解禁され、ルールを緩められる）
