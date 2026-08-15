@@ -64,6 +64,7 @@
   --dur-base: 0.3s;      /* カードの持ち上がり等の小移動 */
   --dur-slow: 0.45s;     /* メディアのズーム */
   --dur-enter: 0.6s;     /* reveal の入場 */
+  --dur-stagger: 0.25s;  /* 連なって現れるときの 1 つあたりの遅延 */
   --dur-ambient: 20s;    /* 波の漂い */
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
   --ease-drift: linear;
@@ -306,9 +307,19 @@ ol.flow--steps {
 }
 
 /* --- Header --- */
+/* sticky + スクロール連動の縮小は main.js の initHeaderScroll が
+   is-scrolled を付け外しする（属性フックは data-site-header） */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   border-bottom: 1px solid var(--c-border);
   background-color: var(--c-bg);
+  transition: box-shadow var(--dur-base) var(--ease-out);
+}
+
+.site-header.is-scrolled {
+  box-shadow: var(--shadow-soft);
 }
 
 .site-header__inner {
@@ -318,6 +329,11 @@ ol.flow--steps {
   justify-content: space-between;
   gap: var(--sp-2) var(--sp-4);
   padding-block: var(--sp-3);
+  transition: padding-block var(--dur-base) var(--ease-out);
+}
+
+.site-header.is-scrolled .site-header__inner {
+  padding-block: var(--sp-2);
 }
 
 .site-logo {
@@ -380,7 +396,7 @@ ol.flow--steps {
      面にアクセントを塗らない規則により surface（DESIGN.md 2章） */
   display: flex;
   align-items: center;
-  min-height: calc(100vh / 1.414);   /* 白銀比 1:√2（DESIGN.md 4章） */
+  min-height: 100vh;   /* ファーストビューを1画面分確保（DESIGN.md 4章） */
   background-color: var(--c-surface);
   color: var(--c-on-media);
 }
@@ -392,6 +408,9 @@ ol.flow--steps {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* パララックスの可動域。JS は transform ではなく translate プロパティで
+     オフセットを与えるため、この scale と独立して合成される */
+  transform: scale(1.12);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -530,6 +549,12 @@ ol.flow--steps {
   transform: translateY(-4px);
   border-color: var(--c-accent-2);
   box-shadow: var(--shadow-lift);
+}
+
+/* id 付きのカードは index のカルーセルからのアンカー先。sticky ヘッダー
+   （縮小時で約 68px）に隠れないよう、その分だけ手前でスクロールを止める */
+.work-card[id] {
+  scroll-margin-top: calc(var(--sp-7) + var(--sp-4));
 }
 
 .work-card__media {
@@ -752,6 +777,27 @@ ol.flow--steps {
   line-height: 1.05;
 }
 
+.section-title__en::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-bottom: var(--sp-3);
+  background-color: var(--c-accent);
+  transform-origin: left center;
+}
+
+/* [data-reveal] の祖先を持つ見出しだけ、線を左から伸ばして現れさせる。
+   祖先に data-reveal が無いページ先頭の h1 等は常時フル表示のまま */
+html[data-js-reveal] [data-reveal] .section-title__en::before {
+  transform: scaleX(0);
+  transition: transform var(--dur-enter) var(--ease-out);
+}
+
+html[data-js-reveal] [data-reveal].is-revealed .section-title__en::before {
+  transform: scaleX(1);
+}
+
 .section-title__ja {
   display: block;
   margin-top: var(--sp-2);
@@ -801,6 +847,134 @@ ol.flow--steps {
   .wave__svg {
     height: 64px;   /* 8pt グリッド整合 */
   }
+}
+
+/* --- Credo（制作への思い） --- */
+/* 常に 1 カラムで縦に積む。横並びにしないのは、指針を上から順に読ませたいのと、
+   3 カラムだと右列が画面右 1/3（月と暗部）に落ちるため（DESIGN.md 2章） */
+.credo-list {
+  /* 近接バンドを 1 段跨いで sp-6（本来はセクション間の距離）。
+     3 つは独立した指針で、1 つずつ区切って読ませたいため（DESIGN.md 4章） */
+  display: grid;
+  gap: var(--sp-6);
+}
+
+/* カードにしない: work-card と並ぶと面が増えて 30% が膨らむため、
+   区切りは上の 1px ヘアラインのみに引く（DESIGN.md 1章「迷ったら引く」）。
+   border-top ではなく ::before なのは、transform で左から引くため
+   （border-width は transform で伸ばせない） */
+.credo::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: var(--sp-3);
+  background-color: var(--c-border);
+  transform-origin: left center;
+}
+
+/* 上から順に「線を引いて開く」動き。JS 無効・IntersectionObserver 非対応・
+   reduced-motion では属性が付かず、線は最初から引かれた状態になる */
+html[data-js-reveal] .credo[data-reveal-item]::before {
+  transform: scaleX(0);
+  transition: transform var(--dur-enter) var(--ease-out);
+  /* --reveal-i は .credo に載るのでカスタムプロパティの継承で届く */
+  transition-delay: calc(var(--dur-stagger) * var(--reveal-i, 0));
+}
+
+html[data-js-reveal] .credo[data-reveal-item].is-revealed::before {
+  transform: scaleX(1);
+}
+
+/* 番号は意味の順序を持たない装飾（HTML 側で aria-hidden）。
+   EN アイデンティティ書体で section-title__en と層を揃える */
+.credo__num {
+  display: block;
+  color: var(--c-accent);
+  font-family: var(--font-display-en);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+}
+
+.credo__title {
+  /* --fs-lg は明朝の下限（--fs-xl）未満なのでゴシックのまま（DESIGN.md 3章） */
+  margin-top: var(--sp-2);   /* 番号と見出しは密結合 */
+  font-size: var(--fs-lg);
+}
+
+.credo__text {
+  margin-top: var(--sp-3);   /* 見出しと本文は関連 */
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+}
+
+/* --- Carousel（実績の横スクロール） --- */
+/* スナップは x のみ。overscroll-behavior-x で、端まで送り切ったスクロールが
+   ブラウザの「戻る」ジェスチャやページ側へ連鎖しないようにする */
+.carousel {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+}
+
+/* スクロール領域自体が tabindex="0" でフォーカスを受ける。
+   既定のリング（offset 3px）がカードに重なるので外へ逃がす */
+.carousel:focus-visible {
+  outline-offset: var(--sp-1);
+}
+
+/* overflow-x を指定すると overflow-y も auto に計算されるため、
+   .work-card:hover の translateY(-4px) と影が切れる。上下に逃げを取り、
+   縦スクロールバーが出ないようにしている */
+.carousel__track {
+  display: flex;
+  gap: var(--sp-4);
+  padding-block: var(--sp-2) var(--sp-3);
+}
+
+/* 固定 px 幅を持たせない（CLAUDE.md レスポンシブ）。狭い画面では次のカードの
+   端が覗いて横に続くと分かり、広い画面でも間延びしない */
+.carousel__track > .work-card {
+  flex: 0 0 auto;
+  width: clamp(15rem, 72vw, 20rem);
+  scroll-snap-align: start;
+}
+
+/* 前へ / 次へ。main.js が生成するので JS 無効時は現れない
+   （その場合もネイティブの横スクロールとキーボードで操作できる） */
+.carousel__nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+.carousel__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-min);   /* Fitts（DESIGN.md 5章） */
+  min-height: var(--tap-min);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: var(--c-text);
+  font-size: var(--fs-lg);
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.carousel__btn:hover:not([disabled]) {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+.carousel__btn[disabled] {
+  color: var(--c-text-muted);
+  cursor: default;
 }
 
 /* ============================================
@@ -888,4 +1062,24 @@ html[data-js-reveal] [data-reveal] {
 html[data-js-reveal] [data-reveal].is-revealed {
   opacity: 1;
   transform: none;
+}
+
+/* カード単位の reveal。transform ではなく opacity + translate プロパティ
+   （transform とは独立に合成される）を使うため、.work-card:hover の
+   transform: translateY(-4px) と衝突しない。カードごとに現れる時間差は
+   nth-child の transition-delay で付ける */
+/* 遅延は main.js が渡す --reveal-i（同時に現れた中での何番目か）で決まる。
+   nth-child による固定の遅延にしないのは、スクロールで 1 つずつ視界に入った
+   ケースまで待たされて反応が鈍く感じるため。単独なら 0 で即座に現れる */
+html[data-js-reveal] [data-reveal-item] {
+  opacity: 0;
+  translate: 0 1rem;
+  transition: opacity var(--dur-enter) var(--ease-out),
+              translate var(--dur-enter) var(--ease-out);
+  transition-delay: calc(var(--dur-stagger) * var(--reveal-i, 0));
+}
+
+html[data-js-reveal] [data-reveal-item].is-revealed {
+  opacity: 1;
+  translate: none;
 }

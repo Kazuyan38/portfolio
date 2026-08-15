@@ -12,7 +12,7 @@
   <a class="skip-link" href="#main">本文へスキップ</a>
 
 
-  <header class="site-header">
+  <header class="site-header" data-site-header>
     <div class="wrap site-header__inner">
       <a class="site-logo" href="index.html">
         Kazuma Miura
@@ -29,6 +29,12 @@
             <a class="site-nav__link" href="about.html">
               <span class="site-nav__link-en">ABOUT</span>
               <span class="site-nav__link-ja">プロフィール</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="philosophy.html">
+              <span class="site-nav__link-en">PHILOSOPHY</span>
+              <span class="site-nav__link-ja">制作への思い</span>
             </a>
           </li>
           <li>
@@ -75,7 +81,7 @@
         <!-- 実績動画はコンテンツ動画（背景動画と別ルール）。autoplay せず
              controls + preload="metadata" + poster。CLAUDE.md「動画」参照 -->
         <ul class="grid grid--2 grid--3" data-work-list data-reveal>
-          <li class="work-card" data-tags="モーショングラフィックス">
+          <li class="work-card" id="work-seichi-na-sekai" data-tags="モーショングラフィックス">
             <video class="work-card__media work-card__media--video"
                    src="assets/video/seichi-na-sekai.mp4"
                    poster="assets/img/works/seichi-na-sekai-poster.webp"
@@ -95,7 +101,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="3DCG">
+          <li class="work-card" id="work-chaotic-yugen" data-tags="3DCG">
             <video class="work-card__media work-card__media--video"
                    src="assets/video/chaotic-yugen.mp4"
                    poster="assets/img/works/chaotic-yugen-poster.webp"
@@ -115,7 +121,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="3DCG">
+          <li class="work-card" id="work-robot-cinematic" data-tags="3DCG">
             <video class="work-card__media work-card__media--video"
                    src="assets/video/robot-cinematic.mp4"
                    poster="assets/img/works/robot-cinematic-poster.webp"
@@ -135,18 +141,19 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="3DCG">
+          <li class="work-card" id="work-yozora-hotaru" data-tags="3DCG">
             <video class="work-card__media work-card__media--video"
                    src="assets/video/yozora-hotaru.mp4"
                    poster="assets/img/works/yozora-hotaru-poster.webp"
                    controls preload="metadata" playsinline
                    width="1920" height="1080"
-                   aria-label="作品「Soleil couchant」の動画">
+                   aria-label="作品「夜空蛍」の動画">
               お使いの環境では動画を再生できません。
             </video>
             <div class="work-card__body">
-              <h3 class="work-card__title">Soleil couchant</h3>
-              <p class="work-card__desc">地平線に沈んでゆく太陽と、茜色に染まる情景を描いたループアニメーション。Blender で制作。</p>
+              <!-- TODO:copy 作品名は確認済み。説明はポスター画像からの仮置き -->
+              <h3 class="work-card__title">夜空蛍</h3>
+              <p class="work-card__desc">夜の森に舞う蛍と、木々の間からのぞく星空を描いたループアニメーション。Blender で制作。</p>
               <p class="work-card__meta">2026年 / 個人制作</p>
               <ul class="tag-list">
                 <li class="tag">3DCG</li>
@@ -154,7 +161,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="3DCG">
+          <li class="work-card" id="work-yugen-sphere" data-tags="3DCG">
             <video class="work-card__media work-card__media--video"
                    src="assets/video/yugen-sphere.mp4"
                    poster="assets/img/works/yugen-sphere-poster.webp"
@@ -174,7 +181,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="モーショングラフィックス">
+          <li class="work-card" id="work-art-site-movement" data-tags="モーショングラフィックス">
             <video class="work-card__media work-card__media--video"
                    src="assets/video/art-site-movement.mp4"
                    poster="assets/img/works/art-site-movement-poster.webp"
@@ -197,7 +204,7 @@
           <!-- ここからイラスト作品（Google ドライブ「写真集」フォルダより。
                タイトルはドライブ上の作品名。サムネイルは 8/5 でトリミング表示し、
                タイトルのリンクから原寸画像を開ける -->
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-shinwa-to-kagaku" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/shinwa-to-kagaku.webp"
                  alt="作品「神話と科学」。万華鏡のような文様に覆われた人物を聖堂のドームを背に描いたサイケデリックな肖像" width="768" height="1364" loading="lazy">
             <div class="work-card__body">
@@ -213,7 +220,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-ichizu-no-hikari" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/ichizu-no-hikari.webp"
                  alt="作品「一途の光」。雨の街で、光の差す窓に向かって手を伸ばす少年の後ろ姿" width="800" height="1066" loading="lazy">
             <div class="work-card__body">
@@ -229,7 +236,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-ukiyo-jigazou" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/ukiyo-jigazou.webp"
                  alt="作品「浮世自画像」。障子越しに月と富士を望む、浮世絵様式の横顔の自画像" width="800" height="1066" loading="lazy">
             <div class="work-card__body">
@@ -245,7 +252,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-kibou-to-kodoku-to-saisei" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/kibou-to-kodoku-to-saisei.webp"
                  alt="作品「希望と孤独と再生」。孤独・再生・希望の文字が並ぶグラフィティの壁と、椅子にうずくまる人物のステンシル画" width="800" height="1066" loading="lazy">
             <div class="work-card__body">
@@ -261,7 +268,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-high-school-yankee" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/high-school-yankee.webp"
                  alt="作品「ハイスクールヤンキー」。花火の上がる夜、キャップとサングラスの少年を油彩のタッチで描いた一枚" width="800" height="444" loading="lazy">
             <div class="work-card__body">
@@ -277,7 +284,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-seni-to-katsubou" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/seni-to-katsubou.webp"
                  alt="作品「繊維と渇望」。締切やエラーコードの帯が顔から溢れ出す、机に向かう人物のシュルレアリスム的な油彩画" width="800" height="1068" loading="lazy">
             <div class="work-card__body">
@@ -293,7 +300,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-soleil-couchant" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/soleil-couchant.webp"
                  alt="作品「Soleil couchant」。天使と群衆と道化を装飾的な額縁に収めたダークファンタジー調の一枚" width="800" height="800" loading="lazy">
             <div class="work-card__body">
@@ -309,7 +316,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-daigaku-to-taiyou" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/daigaku-to-taiyou.webp"
                  alt="作品「大学と太陽」。渦巻く星空の下のキャンパスの夜景を、ゴッホ「星月夜」の筆致で描いた風景画" width="800" height="602" loading="lazy">
             <div class="work-card__body">
@@ -325,7 +332,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-neon-end" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/neon-end.webp"
                  alt="作品「ネオンエンド」。ネオン輝くドット絵の都市に MV クレジットを重ねたピクセルアート" width="800" height="436" loading="lazy">
             <div class="work-card__body">
@@ -341,7 +348,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-kazuya" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/kazuya.webp"
                  alt="作品「kazuya」。道化のキャラクターの表情・装具・タトゥーをまとめた設定画シート" width="800" height="800" loading="lazy">
             <div class="work-card__body">
@@ -357,7 +364,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-boy-living-in-the-twilight" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/boy-living-in-the-twilight.webp"
                  alt="作品「BOY LIVING IN THE TWILIGHT」。夜の高架下を駆けるパーカーの少年を描いたコミックカバー風イラスト" width="800" height="932" loading="lazy">
             <div class="work-card__body">
@@ -373,7 +380,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-my-life" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/my-life.webp"
                  alt="作品「My LIFe」。渦巻く青の背景に学生服の人物を描いたゴッホ風の自画像" width="800" height="948" loading="lazy">
             <div class="work-card__body">
@@ -389,7 +396,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-mikazuki-to-tsukimisou" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/mikazuki-to-tsukimisou.webp"
                  alt="作品「三日月と月見草」。三日月を背にうつむく人物をモノクロのコラージュ調で描いた" width="800" height="800" loading="lazy">
             <div class="work-card__body">
@@ -405,7 +412,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-neon-na-wareware" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/neon-na-wareware.webp"
                  alt="作品「ネオンな我々」。ネオン看板の灯る夜の路地に佇む二人を描いたイラスト" width="800" height="544" loading="lazy">
             <div class="work-card__body">
@@ -421,7 +428,7 @@
             </div>
           </li>
 
-          <li class="work-card" data-tags="アート">
+          <li class="work-card" id="work-ceiling-chronos" data-tags="アート">
             <img class="work-card__media" src="assets/img/works/ceiling-chronos.webp"
                  alt="作品「CEILING CHRONOS」。時計を宿す白い巨人とこちらを指差す人物を劇画調で描いたイラスト" width="800" height="1032" loading="lazy">
             <div class="work-card__body">
@@ -457,6 +464,7 @@
       <nav class="site-footer__nav" aria-label="フッターナビゲーション">
         <a href="index.html">ホーム</a>
         <a href="about.html">プロフィール</a>
+        <a href="philosophy.html">制作への思い</a>
         <a href="works.html">制作実績</a>
         <a href="contact.html">お問い合わせ</a>
       </nav>

@@ -11,6 +11,8 @@
 
   window.Portfolio.ui = {
     filterLabel: '制作実績の絞り込み',
-    filterAll: 'すべて'
+    filterAll: 'すべて',
+    carouselPrev: '前の作品へ',
+    carouselNext: '次の作品へ'
   };
 })();

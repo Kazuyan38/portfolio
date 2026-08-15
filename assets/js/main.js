@@ -33,18 +33,43 @@
       return;
     }
 
-    var targets = document.querySelectorAll('[data-reveal]');
+    var targets = document.querySelectorAll('[data-reveal], [data-reveal-item]');
     if (targets.length === 0) {
       return;
     }
 
+    /* 同じコールバックで現れた要素にだけ 0,1,2… の順番を渡す。CSS 側が
+       transition-delay: calc(--dur-stagger * --reveal-i) で連なりを作る。
+       スクロールで 1 つずつ入ってきた場合は毎回 0 になり、遅延なしで現れる。
+       カスタムプロパティの書き込みはインラインスタイル禁止の例外
+       （クラスでは表現できない連番。DESIGN.md 6章） */
     var observer = new IntersectionObserver(function (entries) {
+      var shown = [];
       var i;
+
       for (i = 0; i < entries.length; i += 1) {
         if (entries[i].isIntersecting) {
-          entries[i].target.classList.add('is-revealed');
-          observer.unobserve(entries[i].target);
+          shown.push(entries[i]);
         }
+      }
+
+      /* entries の順序は仕様で保証されないため、画面上の縦位置で並べ替えてから
+         番号を振る。並べ替えないと連なりが下から上に流れることがある */
+      shown.sort(function (a, b) {
+        return a.boundingClientRect.top - b.boundingClientRect.top;
+      });
+
+      /* --reveal-i を書くのは [data-reveal-item] だけ。カスタムプロパティは
+         継承するため、コンテナ側に書くと入れ子の item が親の番号を拾ってしまう。
+         番号も item どうしで数える（コンテナを混ぜると先頭が 0 にならない） */
+      var order = 0;
+      for (i = 0; i < shown.length; i += 1) {
+        if (shown[i].target.hasAttribute('data-reveal-item')) {
+          shown[i].target.style.setProperty('--reveal-i', String(order));
+          order += 1;
+        }
+        shown[i].target.classList.add('is-revealed');
+        observer.unobserve(shown[i].target);
       }
     }, { rootMargin: '0px 0px -10% 0px' });
 
@@ -67,6 +92,157 @@
     video.removeAttribute('autoplay');
     video.preload = 'none';
     video.pause();
+  }
+
+  /* --- ヘッダーのスクロール連動縮小 --- */
+  /* reduced-motion では CSS のグローバルブロックが transition を止めるため、
+     JS 側での分岐は不要（クラスの付け外しだけなら害がない） */
+  function initHeaderScroll() {
+    var header = document.querySelector('[data-site-header]');
+    if (!header) {
+      return;
+    }
+
+    var THRESHOLD = 24;
+    var ticking = false;
+
+    function update() {
+      header.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    update();
+  }
+
+  /* --- ヒーロー動画の視差効果 --- */
+  /* translate プロパティで動かす（CSS 側の transform: scale と独立に合成
+     されるため、可動域を確保する scale を消さずに済む）。
+     連続値のため style 属性の直接操作が必要な唯一の例外（DESIGN.md 6章） */
+  function initHeroParallax() {
+    if (prefersReducedMotion()) {
+      return;
+    }
+
+    var media = document.querySelector('[data-hero-video]');
+    var hero = media && media.closest('.hero');
+    if (!hero) {
+      return;
+    }
+
+    var MAX_OFFSET = 80;
+    var FACTOR = 0.15;
+    var ticking = false;
+
+    function update() {
+      var rect = hero.getBoundingClientRect();
+      var offset = Math.min(MAX_OFFSET, Math.max(0, -rect.top) * FACTOR);
+      media.style.translate = '0 ' + offset + 'px';
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* --- 実績カルーセルの前へ / 次へ --- */
+  /* ボタンは JS で生成する。HTML に静的に書くと JS 無効時に反応しないボタンが
+     残るため（CLAUDE.md）。ボタンが無くても、カルーセル本体は overflow-x の
+     ネイティブスクロールと tabindex="0" + 矢印キーで操作できる */
+  function initCarousel() {
+    var carousel = document.querySelector('[data-carousel]');
+    var track = carousel && carousel.querySelector('[data-carousel-track]');
+    if (!track) {
+      return;
+    }
+
+    var nav = document.createElement('div');
+    var dirs = [
+      { dir: -1, label: ui.carouselPrev || '前へ', glyph: '←' },
+      { dir: 1, label: ui.carouselNext || '次へ', glyph: '→' }
+    ];
+    var i;
+
+    nav.className = 'carousel__nav';
+
+    for (i = 0; i < dirs.length; i += 1) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'carousel__btn';
+      btn.setAttribute('data-carousel-dir', String(dirs[i].dir));
+      btn.setAttribute('aria-label', dirs[i].label);
+      btn.textContent = dirs[i].glyph;
+      nav.appendChild(btn);
+    }
+
+    carousel.parentNode.insertBefore(nav, carousel.nextSibling);
+
+    /* 送り幅はカード 1 枚 + gap。実測するのでカード幅を変えても追従する */
+    function cardStep() {
+      var card = track.firstElementChild;
+      if (!card) {
+        return carousel.clientWidth;
+      }
+      var gap = parseFloat(window.getComputedStyle(track).columnGap);
+      return card.getBoundingClientRect().width + (gap || 0);
+    }
+
+    /* 端に着いたら押せなくする。全カードが収まって送る余地が無い場合は
+       ボタン自体を隠す（押せないだけのものを置かない） */
+    function syncNav() {
+      var max = carousel.scrollWidth - carousel.clientWidth;
+      var buttons = nav.querySelectorAll('[data-carousel-dir]');
+      var j;
+
+      nav.hidden = max <= 1;
+      for (j = 0; j < buttons.length; j += 1) {
+        var dir = Number(buttons[j].getAttribute('data-carousel-dir'));
+        buttons[j].disabled = dir < 0
+          ? carousel.scrollLeft <= 1
+          : carousel.scrollLeft >= max - 1;
+      }
+    }
+
+    nav.addEventListener('click', function (event) {
+      var btn = event.target.closest('[data-carousel-dir]');
+      if (!btn || btn.disabled) {
+        return;
+      }
+      carousel.scrollBy({
+        left: Number(btn.getAttribute('data-carousel-dir')) * cardStep(),
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+      });
+    });
+
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          syncNav();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    carousel.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    /* 画像が遅延読込で入るとカードの高さと scrollWidth が変わるため、
+       読み終わりでも取り直す */
+    window.addEventListener('load', syncNav);
+
+    syncNav();
   }
 
   /* --- フッターの年号を現在年に更新 --- */
@@ -185,8 +361,11 @@
 
   function init() {
     initHeroVideo();
+    initHeaderScroll();
+    initHeroParallax();
     initYear();
     initWorkFilter();
+    initCarousel();
     initReveal();
   }
 

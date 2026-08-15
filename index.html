@@ -12,7 +12,7 @@
   <a class="skip-link" href="#main">本文へスキップ</a>
 
 
-  <header class="site-header">
+  <header class="site-header" data-site-header>
     <div class="wrap site-header__inner">
       <a class="site-logo" href="index.html">
         Kazuma Miura
@@ -29,6 +29,12 @@
             <a class="site-nav__link" href="about.html">
               <span class="site-nav__link-en">ABOUT</span>
               <span class="site-nav__link-ja">プロフィール</span>
+            </a>
+          </li>
+          <li>
+            <a class="site-nav__link" href="philosophy.html">
+              <span class="site-nav__link-en">PHILOSOPHY</span>
+              <span class="site-nav__link-ja">制作への思い</span>
             </a>
           </li>
           <li>
@@ -50,7 +56,7 @@
 
   <main id="main">
     <section class="hero hero--video">
-      <video class="hero__video" src="assets/video/chaotic-yugen.mp4" data-hero-video
+      <video class="hero__video" src="assets/video/chaotic-yugen-hero.mp4" data-hero-video
              autoplay muted loop playsinline aria-hidden="true"></video>
       <div class="wrap hero__content">
         <p class="hero__eyebrow">PORTFOLIO</p>
@@ -78,61 +84,356 @@
         <div class="section__head" data-reveal>
           <h2 class="section-title">
             <span class="section-title__en">WORKS</span>
-            <span class="section-title__ja">最近の制作実績</span>
+            <span class="section-title__ja">制作実績</span>
           </h2>
-          <p class="section__desc">細部にこだわった制作の一部を抜粋してご紹介します。</p>
+          <p class="section__desc">これまでの制作をすべて並べました。横にスクロールしてご覧ください。</p>
         </div>
 
-        <!-- data-reveal はコンテナに 1 つだけ。カード個別に付けると reveal の
-             transform: none がホバーリフトを上書きして動かなくなる -->
-        <!-- 抜粋は動画でなくポスター画像 + works へのリンク。
-             トップはヒーロー動画があるため、これ以上動画を読み込ませない -->
-        <ul class="grid grid--2 grid--3" data-reveal>
-          <li class="work-card">
-            <img class="work-card__media" src="assets/img/works/robot-cinematic-poster.webp"
-                 alt="作品「Robot Cinematic」より、金色の金属片が渦を巻いて集まるシーン" width="800" height="340" loading="lazy">
-            <div class="work-card__body">
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="works.html">Robot Cinematic</a>
-              </h3>
-              <p class="work-card__desc">金属片が集積してロボットの姿を成し、二体が対峙するまでを描いたシネマティック映像。Blender で制作。</p>
-              <ul class="tag-list">
-                <li class="tag">3DCG</li>
-              </ul>
-            </div>
+        <!-- 全作品を横スクロールで並べる。内容の正は works.html で、ここは
+             ポスター画像 + タイトル + タグだけの索引（説明文・制作年は複製しない）。
+             動画は読み込まずポスター画像にする（ヒーロー動画があるため）
+             ★ 作品の追加・タイトル変更・並べ替えは works.html と両方直すこと。
+               タイトルとタグはここにも複製されているので、works.html 側で仮タイトルを
+               正式名称に差し替えたら、この索引側の表記も揃える -->
+        <!-- data-reveal はコンテナに 1 つだけ。21 枚に data-reveal-item を付けると
+             --dur-stagger が積み上がり、最後のカードが出るまで数秒かかる -->
+        <!-- tabindex="0" はスクロール領域をキーボードで操作するために必要
+             （Firefox 以外は overflow 要素を自動でフォーカス可能にしない）。
+             JS 無効でも効くので静的に書いてよい。前へ/次へは main.js が生成する -->
+        <div class="carousel" data-carousel tabindex="0" role="region"
+             aria-label="制作実績（横スクロール）" data-reveal>
+          <ul class="carousel__track" data-carousel-track>
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/seichi-na-sekai-poster.webp"
+                   alt="作品「精緻な世界」のワンシーン" width="1080" height="1920" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-seichi-na-sekai">精緻な世界</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">モーショングラフィックス</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/chaotic-yugen-poster.webp"
+                   alt="作品「Chaotic Yugen」のワンシーン" width="1920" height="804" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-chaotic-yugen">Chaotic Yugen</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">3DCG</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/robot-cinematic-poster.webp"
+                   alt="作品「Robot Cinematic」のワンシーン" width="1088" height="462" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-robot-cinematic">Robot Cinematic</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">3DCG</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/yozora-hotaru-poster.webp"
+                   alt="作品「夜空蛍」のワンシーン" width="1920" height="1080" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-yozora-hotaru">夜空蛍</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">3DCG</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/yugen-sphere-poster.webp"
+                   alt="作品「Yugen Sphere」のワンシーン" width="1920" height="1080" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-yugen-sphere">Yugen Sphere</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">3DCG</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/art-site-movement-poster.webp"
+                   alt="作品「Art Site Movement」のワンシーン" width="640" height="360" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-art-site-movement">Art Site Movement</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">モーショングラフィックス</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/shinwa-to-kagaku.webp"
+                   alt="作品「神話と科学」。万華鏡のような文様に覆われた人物を聖堂のドームを背に描いたサイケデリックな肖像" width="768" height="1364" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-shinwa-to-kagaku">神話と科学</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/ichizu-no-hikari.webp"
+                   alt="作品「一途の光」。雨の街で、光の差す窓に向かって手を伸ばす少年の後ろ姿" width="800" height="1066" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-ichizu-no-hikari">一途の光</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/ukiyo-jigazou.webp"
+                   alt="作品「浮世自画像」。障子越しに月と富士を望む、浮世絵様式の横顔の自画像" width="800" height="1066" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-ukiyo-jigazou">浮世自画像</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/kibou-to-kodoku-to-saisei.webp"
+                   alt="作品「希望と孤独と再生」。孤独・再生・希望の文字が並ぶグラフィティの壁と、椅子にうずくまる人物のステンシル画" width="800" height="1066" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-kibou-to-kodoku-to-saisei">希望と孤独と再生</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/high-school-yankee.webp"
+                   alt="作品「ハイスクールヤンキー」。花火の上がる夜、キャップとサングラスの少年を油彩のタッチで描いた一枚" width="800" height="444" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-high-school-yankee">ハイスクールヤンキー</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/seni-to-katsubou.webp"
+                   alt="作品「繊維と渇望」。締切やエラーコードの帯が顔から溢れ出す、机に向かう人物のシュルレアリスム的な油彩画" width="800" height="1068" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-seni-to-katsubou">繊維と渇望</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/soleil-couchant.webp"
+                   alt="作品「Soleil couchant」。天使と群衆と道化を装飾的な額縁に収めたダークファンタジー調の一枚" width="800" height="800" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-soleil-couchant">Soleil couchant</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/daigaku-to-taiyou.webp"
+                   alt="作品「大学と太陽」。渦巻く星空の下のキャンパスの夜景を、ゴッホ「星月夜」の筆致で描いた風景画" width="800" height="602" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-daigaku-to-taiyou">大学と太陽</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/neon-end.webp"
+                   alt="作品「ネオンエンド」。ネオン輝くドット絵の都市に MV クレジットを重ねたピクセルアート" width="800" height="436" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-neon-end">ネオンエンド</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/kazuya.webp"
+                   alt="作品「kazuya」。道化のキャラクターの表情・装具・タトゥーをまとめた設定画シート" width="800" height="800" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-kazuya">kazuya</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/boy-living-in-the-twilight.webp"
+                   alt="作品「BOY LIVING IN THE TWILIGHT」。夜の高架下を駆けるパーカーの少年を描いたコミックカバー風イラスト" width="800" height="932" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-boy-living-in-the-twilight">BOY LIVING IN THE TWILIGHT</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/my-life.webp"
+                   alt="作品「My LIFe」。渦巻く青の背景に学生服の人物を描いたゴッホ風の自画像" width="800" height="948" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-my-life">My LIFe</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/mikazuki-to-tsukimisou.webp"
+                   alt="作品「三日月と月見草」。三日月を背にうつむく人物をモノクロのコラージュ調で描いた" width="800" height="800" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-mikazuki-to-tsukimisou">三日月と月見草</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/neon-na-wareware.webp"
+                   alt="作品「ネオンな我々」。ネオン看板の灯る夜の路地に佇む二人を描いたイラスト" width="800" height="544" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-neon-na-wareware">ネオンな我々</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="work-card">
+              <img class="work-card__media" src="assets/img/works/ceiling-chronos.webp"
+                   alt="作品「CEILING CHRONOS」。時計を宿す白い巨人とこちらを指差す人物を劇画調で描いたイラスト" width="800" height="1032" loading="lazy">
+              <div class="work-card__body">
+                <h3 class="work-card__title">
+                  <a class="work-card__link" href="works.html#work-ceiling-chronos">CEILING CHRONOS</a>
+                </h3>
+                <ul class="tag-list">
+                  <li class="tag">アート</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <p class="mt-5">
+          <a href="works.html">一覧ページで動画と詳細を見る</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- WORKS と同じサーフェス帯の内側に置く（波を挟まない）。
+         不透明帯の内側なら muted テキストのコントラストが
+         ベール濃度に依存しない（DESIGN.md 2章） -->
+    <section class="section section--surface">
+      <div class="wrap">
+        <div class="section__head" data-reveal>
+          <h2 class="section-title">
+            <span class="section-title__en">PHILOSOPHY</span>
+            <span class="section-title__ja">制作への思い</span>
+          </h2>
+          <p class="section__desc measure">
+            ジャンルや道具が変わっても、制作に向かうときの姿勢は変わりません。
+            いま大切にしている、三つのことです。
+          </p>
+        </div>
+
+        <ul class="credo-list measure">
+          <li class="credo" data-reveal-item>
+            <span class="credo__num" aria-hidden="true">01</span>
+            <h3 class="credo__title">細部を諦めない</h3>
+            <p class="credo__text">
+              あと一手間、と思ったところで手を止めない。陰影の粒度、余白の取り方、
+              コードの読みやすさ。見る人が意識しないところこそ、
+              全体の印象を静かに決めていくと考えています。
+            </p>
           </li>
 
-          <li class="work-card">
-            <img class="work-card__media" src="assets/img/works/yozora-hotaru-poster.webp"
-                 alt="作品「Soleil couchant」より、地平線に沈む夕日と茜色に染まる情景" width="800" height="450" loading="lazy">
-            <div class="work-card__body">
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="works.html">Soleil couchant</a>
-              </h3>
-              <p class="work-card__desc">地平線に沈んでゆく太陽と、茜色に染まる情景を描いたループアニメーション。Blender で制作。</p>
-              <ul class="tag-list">
-                <li class="tag">3DCG</li>
-              </ul>
-            </div>
+          <li class="credo" data-reveal-item>
+            <span class="credo__num" aria-hidden="true">02</span>
+            <h3 class="credo__title">道具は選ぶが、判断は譲らない</h3>
+            <p class="credo__text">
+              生成AIはアイデア出しや実装の下ごしらえに使いますが、「これでいい」と決める
+              最後の一手は自分の目と手に残しています。判断を道具に預けないことを、
+              制作の指針にしています。
+            </p>
           </li>
 
-          <li class="work-card">
-            <img class="work-card__media" src="assets/img/works/yugen-sphere-poster.webp"
-                 alt="作品「Yugen Sphere」より、金の環と青い軌道をまとう球体" width="800" height="450" loading="lazy">
-            <div class="work-card__body">
-              <h3 class="work-card__title">
-                <a class="work-card__link" href="works.html">Yugen Sphere</a>
-              </h3>
-              <p class="work-card__desc">惑星を思わせる球体のまわりを、軌道と結晶が静かに巡るループアニメーション。Blender で制作。</p>
-              <ul class="tag-list">
-                <li class="tag">3DCG</li>
-              </ul>
-            </div>
+          <li class="credo" data-reveal-item>
+            <span class="credo__num" aria-hidden="true">03</span>
+            <h3 class="credo__title">語りすぎない</h3>
+            <p class="credo__text">
+              すべてを説明してしまわない。言い尽くさない余白があるから、
+              見る人は自分の記憶を重ねられる。幽玄——見せきらないことで生まれる
+              奥行きを、制作の指針にしています。
+            </p>
           </li>
         </ul>
 
         <p class="mt-5">
-          <a href="works.html">すべての制作実績を見る</a>
+          <a href="philosophy.html">制作への思いをくわしく読む</a>
         </p>
       </div>
     </section>
@@ -175,6 +476,7 @@
       <nav class="site-footer__nav" aria-label="フッターナビゲーション">
         <a href="index.html">ホーム</a>
         <a href="about.html">プロフィール</a>
+        <a href="philosophy.html">制作への思い</a>
         <a href="works.html">制作実績</a>
         <a href="contact.html">お問い合わせ</a>
       </nav>

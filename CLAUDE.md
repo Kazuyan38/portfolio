@@ -31,8 +31,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## ディレクトリ構成
 
 ```
-index.html          トップ（ヒーロー＋実績抜粋＋連絡先への導線）
+index.html          トップ（ヒーロー＋実績カルーセル＋思いの抜粋＋連絡先への導線）
 about.html          プロフィール・経歴・スキル
+philosophy.html     制作への思い（三つの指針）
 works.html          制作実績一覧
 contact.html        連絡先
 assets/
@@ -51,6 +52,8 @@ assets/
 ```
 
 **コンテンツの単一の情報源は HTML**。作品一覧などの本文を `data.js` に持たせて JS で描画しない（JS 無効時に何も表示されなくなるため）。`data.js` が持つのは UI 文言や設定値だけ。
+
+**作品の正は `works.html`**。index のカルーセルは同じ作品をポスター画像・タイトル・タグだけで並べた索引で、説明文と制作年は複製していない。作品を追加・改名・並べ替えるときは両方直す。index のカードは `works.html#work-<slug>` へアンカーで飛ぶので、`works.html` 側の `id="work-<slug>"` も対で維持する（slug はメディアのファイル名から `-poster` を除いたもの）。
 
 ページを増やす場合もルート直下にフラットに置く。`file://` では階層を深くするほど相対パスの事故が増えるため、サブディレクトリを切らない。
 
@@ -226,12 +229,12 @@ Select-String -Path *.html -Pattern 'TODO:copy|data-todo'
 
 このリストの項目は、公開が決まるまで対応不要。
 
-- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 32 箇所）
-- [ ] `.draft-banner` の削除（全 4 ページ + CSS）
+- [ ] `TODO:copy` / `data-todo` の全消し込み（現在 21 箇所。すべて works.html）
+- [x] `.draft-banner` の削除（全ページ + CSS。削除済み）
 - [ ] プロフィールのプレースホルダ SVG（`profile-placeholder.svg`）を実写真に差し替え（作品カードは実動画・実ポスターに置換済み。未参照になった works/placeholder-0*.svg は削除済み）
 - [ ] `<title>` と `meta description` をページごとに固有の内容へ
 - [ ] OGP / favicon の追加
 - [ ] 連絡先の実アドレス化（スパム対策を検討）
-- [x] ヒーロー・実績動画の再エンコード（3〜5Mbps 前後へ圧縮済み。合計 108MB → 30MB）
+- [x] ヒーロー・実績動画の再エンコード（ソースから CRF 18・上限 5Mbps で高品質再エンコード済み。合計 64MB。yugen-sphere と art-site-movement はソース自体がこの画質のため、改善には Blender 再レンダリングが必要）
 - [ ] ヒーロー動画の停止手段を再検討（WCAG 2.2.2 レベル A。仮サイトの間は停止ボタンを置かない判断 — DESIGN.md 5 章）
 - [ ] 公開先が確定したら、`file://` 制約の解除可否を再検討する（サーバー配信になれば modules と fetch が解禁され、ルールを緩められる）
