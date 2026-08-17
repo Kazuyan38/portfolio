@@ -47,7 +47,8 @@ assets/
     profile-placeholder.svg
     works/          作品画像・実績動画のポスター（*-poster.webp）
   video/
-    chaotic-yugen.mp4   トップのヒーロー背景動画（works の実績カードでも使用）
+    chaotic-yugen-hero.mp4   トップのヒーロー背景動画（低画質・背景専用）
+    chaotic-yugen.mp4        works の実績カード「Chaotic Yugen」用（高画質）
     *.mp4               制作実績の作品動画（works.html のカードから参照）
 ```
 
