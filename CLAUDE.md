@@ -44,7 +44,7 @@ assets/
     main.js         DOM 操作・イベント。data.js の後に読み込む
   img/
     bg-yugen.webp   全ページ共通の固定背景アート
-    profile-placeholder.svg
+    profile-ukiyo-jigazou.webp  about のプロフィール画像（作品「浮世自画像」の正方形クロップ）
     works/          作品画像・実績動画のポスター（*-poster.webp）
   video/
     chaotic-yugen-hero.mp4   トップのヒーロー背景動画（低画質・背景専用）
@@ -232,7 +232,7 @@ Select-String -Path *.html -Pattern 'TODO:copy|data-todo'
 
 - [ ] `TODO:copy` / `data-todo` の全消し込み（現在 21 箇所。すべて works.html）
 - [x] `.draft-banner` の削除（全ページ + CSS。削除済み）
-- [ ] プロフィールのプレースホルダ SVG（`profile-placeholder.svg`）を実写真に差し替え（作品カードは実動画・実ポスターに置換済み。未参照になった works/placeholder-0*.svg は削除済み）
+- [x] プロフィール画像の差し替え（作品「浮世自画像」の正方形クロップ `profile-ukiyo-jigazou.webp` に置換済み。作品カードも実動画・実ポスターに置換済み。未参照になった profile-placeholder.svg と works/placeholder-0*.svg は削除済み）
 - [ ] `<title>` と `meta description` をページごとに固有の内容へ
 - [ ] OGP / favicon の追加
 - [ ] 連絡先の実アドレス化（スパム対策を検討）
