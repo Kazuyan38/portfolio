@@ -323,6 +323,7 @@ ol.flow--steps {
 }
 
 .site-header__inner {
+  position: relative;   /* モバイルのプルダウン（.site-nav__list.is-open）の基準 */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -396,6 +397,72 @@ ol.flow--steps {
   }
 
   .site-nav__link-ja {
+    display: block;
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+  }
+}
+
+/* --- Nav toggle（main.js が生成するハンバーガーボタン。JS 無効時は存在しない）
+   JS 無効時は上の EN 表記 1 行フォールバックのままヘッダーに収まる。
+   JS が動く環境だけ、モバイル幅でリストをプルダウン化する（DESIGN.md 5章に追記） */
+.site-nav-toggle {
+  display: none;
+}
+
+@media (max-width: 599.98px) {
+  html[data-js-nav] .site-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--tap-min);   /* Fitts */
+    height: var(--tap-min);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    background-color: transparent;
+    color: var(--c-text);
+    font-size: var(--fs-lg);
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color var(--dur-fast) var(--ease-out),
+                color var(--dur-fast) var(--ease-out);
+  }
+
+  html[data-js-nav] .site-nav-toggle:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+  }
+
+  /* 既定は非表示。開いたときだけ .is-open でプルダウン表示する */
+  html[data-js-nav] .site-nav__list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding-block: var(--sp-2);
+    border-top: 1px solid var(--c-border);
+    background-color: var(--c-bg);
+    box-shadow: var(--shadow-soft);
+  }
+
+  html[data-js-nav] .site-nav__list.is-open {
+    display: flex;
+  }
+
+  /* プルダウンは横幅に余裕があるので、EN 表記のみのフォールバックを解除し
+     EN+JA の 2 行表記に戻す（縦積みなので横の圧迫は起きない） */
+  html[data-js-nav] .site-nav__link {
+    display: block;
+    width: 100%;
+    padding-inline: var(--sp-2);
+  }
+
+  html[data-js-nav] .site-nav__link-ja {
     display: block;
     font-size: var(--fs-xs);
     line-height: 1.4;

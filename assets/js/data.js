@@ -13,6 +13,8 @@
     filterLabel: '制作実績の絞り込み',
     filterAll: 'すべて',
     carouselPrev: '前の作品へ',
-    carouselNext: '次の作品へ'
+    carouselNext: '次の作品へ',
+    navOpen: 'メニューを開く',
+    navClose: 'メニューを閉じる'
   };
 })();

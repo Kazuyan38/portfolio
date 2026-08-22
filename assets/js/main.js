@@ -94,6 +94,87 @@
     video.pause();
   }
 
+  /* --- モバイルナビのプルダウン化 --- */
+  /* トグルボタンは操作 UI なので main.js が生成する（CLAUDE.md）。JS 無効時は
+     ボタンが存在せず、CSS 側の EN 表記 1 行フォールバックのままヘッダーに収まる。
+     data-js-nav を html に立ててから CSS がプルダウンの表示切替を担当する
+     （data-js-reveal と同じパターン） */
+  function initMobileNav() {
+    var header = document.querySelector('[data-site-header]');
+    var nav = header && header.querySelector('.site-nav');
+    var list = nav && nav.querySelector('.site-nav__list');
+    if (!nav || !list) {
+      return;
+    }
+
+    if (!list.id) {
+      list.id = 'site-nav-list';
+    }
+
+    document.documentElement.setAttribute('data-js-nav', '');
+
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'site-nav-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', list.id);
+    toggle.setAttribute('aria-label', ui.navOpen || 'メニューを開く');
+    toggle.textContent = '☰';
+    nav.insertBefore(toggle, list);
+
+    function isOpen() {
+      return list.classList.contains('is-open');
+    }
+
+    function closeMenu() {
+      if (!isOpen()) {
+        return;
+      }
+      list.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', ui.navOpen || 'メニューを開く');
+      toggle.textContent = '☰';
+    }
+
+    function openMenu() {
+      list.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', ui.navClose || 'メニューを閉じる');
+      toggle.textContent = '✕';
+    }
+
+    toggle.addEventListener('click', function () {
+      if (isOpen()) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    /* Esc で閉じてトグルボタンにフォーカスを戻す（CLAUDE.md のハンバーガー要件） */
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && isOpen()) {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    /* リンクを選んだら閉じておく（同一ページ内リンクや戻る操作向けの後始末） */
+    list.addEventListener('click', function (event) {
+      if (event.target.closest('a')) {
+        closeMenu();
+      }
+    });
+
+    /* 600px 以上は CSS がプルダウンを解除して常時表示に戻すため、
+       状態だけ揃えておく（aria-expanded が開いたまま残らないように） */
+    window.addEventListener('resize', function () {
+      if (window.matchMedia('(min-width: 600px)').matches) {
+        closeMenu();
+      }
+    });
+  }
+
   /* --- ヘッダーのスクロール連動縮小 --- */
   /* reduced-motion では CSS のグローバルブロックが transition を止めるため、
      JS 側での分岐は不要（クラスの付け外しだけなら害がない） */
@@ -367,6 +448,7 @@
 
   function init() {
     initHeroVideo();
+    initMobileNav();
     initHeaderScroll();
     initHeroParallax();
     initYear();
