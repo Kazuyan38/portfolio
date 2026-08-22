@@ -218,7 +218,7 @@ body::before {
   width: 100%;
   max-width: var(--wrap);
   margin-inline: auto;
-  padding-inline: var(--sp-3);
+  padding-inline: var(--sp-4);
 }
 
 .section {
@@ -259,7 +259,7 @@ ol.flow--steps {
 
 @media (min-width: 600px) {
   .wrap {
-    padding-inline: var(--sp-4);
+    padding-inline: var(--sp-5);
   }
 
   .section {
@@ -714,6 +714,51 @@ ol.flow--steps {
   }
 }
 
+/* --- Skill grid（SKILLS を図版グリッド化） ---
+   縦積みの定義リストは文字だけの帯が続いてモバイルで窮屈に見えるため、
+   アイコン付きの 2 列カードに組み替えた。work-card と離れた位置にあるため
+   30% サーフェス予算を圧迫しない（DESIGN.md 2章に追記） */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+.skill-card {
+  padding: var(--sp-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--c-surface);
+}
+
+.skill-card__icon {
+  width: 28px;
+  height: 28px;
+  color: var(--c-accent);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.skill-card__title {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-base);
+}
+
+.skill-card__desc {
+  margin-top: var(--sp-2);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 600px) {
+  .skill-grid {
+    gap: var(--sp-4);
+  }
+}
+
 /* --- Contact --- */
 .contact-list__row {
   display: grid;
@@ -851,7 +896,9 @@ html[data-js-reveal] [data-reveal].is-revealed .section-title__en::before {
 
 /* --- Credo（制作への思い） --- */
 /* 常に 1 カラムで縦に積む。横並びにしないのは、指針を上から順に読ませたいのと、
-   3 カラムだと右列が画面右 1/3（月と暗部）に落ちるため（DESIGN.md 2章） */
+   3 カラムだと右列が画面右 1/3（月と暗部）に落ちるため（DESIGN.md 2章）。
+   番号を丸バッジにして縦の接続線でつなぐ「ステップ図」化は、モバイルで
+   文字だけの帯が続いて窮屈に見えるとの判断から追加した（DESIGN.md 2章に追記） */
 .credo-list {
   /* 近接バンドを 1 段跨いで sp-6（本来はセクション間の距離）。
      3 つは独立した指針で、1 つずつ区切って読ませたいため（DESIGN.md 4章） */
@@ -860,46 +907,62 @@ html[data-js-reveal] [data-reveal].is-revealed .section-title__en::before {
 }
 
 /* カードにしない: work-card と並ぶと面が増えて 30% が膨らむため、
-   区切りは上の 1px ヘアラインのみに引く（DESIGN.md 1章「迷ったら引く」）。
-   border-top ではなく ::before なのは、transform で左から引くため
-   （border-width は transform で伸ばせない） */
-.credo::before {
-  content: "";
-  display: block;
-  height: 1px;
-  margin-bottom: var(--sp-3);
-  background-color: var(--c-border);
-  transform-origin: left center;
+   区切りはバッジ＋接続線のみに引く（DESIGN.md 1章「迷ったら引く」） */
+.credo {
+  position: relative;
+  padding-left: calc(var(--sp-6) + var(--sp-3));
 }
 
-/* 上から順に「線を引いて開く」動き。JS 無効・IntersectionObserver 非対応・
-   reduced-motion では属性が付かず、線は最初から引かれた状態になる */
+/* 接続線。::before なのは、transform で上から下へ伸ばすため
+   （border-width は transform で伸ばせない）。最後の指針の下には引かない */
+.credo:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--sp-6) / 2 - 0.5px);
+  top: var(--sp-6);
+  bottom: calc(-1 * var(--sp-6));
+  width: 1px;
+  background-color: var(--c-border);
+  transform-origin: top center;
+}
+
+/* 上から順に「線が伸びて次の指針へつながる」動き。JS 無効・IntersectionObserver
+   非対応・reduced-motion では属性が付かず、線は最初から伸びた状態になる */
 html[data-js-reveal] .credo[data-reveal-item]::before {
-  transform: scaleX(0);
+  transform: scaleY(0);
   transition: transform var(--dur-enter) var(--ease-out);
   /* --reveal-i は .credo に載るのでカスタムプロパティの継承で届く */
   transition-delay: calc(var(--dur-stagger) * var(--reveal-i, 0));
 }
 
 html[data-js-reveal] .credo[data-reveal-item].is-revealed::before {
-  transform: scaleX(1);
+  transform: scaleY(1);
 }
 
 /* 番号は意味の順序を持たない装飾（HTML 側で aria-hidden）。
-   EN アイデンティティ書体で section-title__en と層を揃える */
+   丸バッジのボーダー・文字はアクセント。3 つ分の輪郭線は面積として無視できる
+   小要素の範囲内（DESIGN.md 2章「アクセントで面を塗らない」） */
 .credo__num {
-  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sp-6);
+  height: var(--sp-6);
+  border: 1px solid var(--c-accent);
+  border-radius: 50%;
+  background-color: var(--c-bg);
   color: var(--c-accent);
   font-family: var(--font-display-en);
   font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: 0.2em;
-  line-height: 1.2;
+  line-height: 1;
 }
 
 .credo__title {
   /* --fs-lg は明朝の下限（--fs-xl）未満なのでゴシックのまま（DESIGN.md 3章） */
-  margin-top: var(--sp-2);   /* 番号と見出しは密結合 */
   font-size: var(--fs-lg);
 }
 
