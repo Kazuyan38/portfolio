@@ -481,9 +481,17 @@ ol.flow--steps {
      面にアクセントを塗らない規則により surface（DESIGN.md 2章） */
   display: flex;
   align-items: center;
-  min-height: 100vh;   /* ファーストビューを1画面分確保（DESIGN.md 4章） */
+  /* モバイルは 100vh だと縦に間延びして見えるため 85vh に抑える。
+     600px 以上は DESIGN.md 4章の判断どおり 100vh のまま（DESIGN.md 4章に追記） */
+  min-height: 85vh;
   background-color: var(--c-surface);
   color: var(--c-on-media);
+}
+
+@media (min-width: 600px) {
+  .hero--video {
+    min-height: 100vh;   /* ファーストビューを1画面分確保（DESIGN.md 4章） */
+  }
 }
 
 .hero__video {
