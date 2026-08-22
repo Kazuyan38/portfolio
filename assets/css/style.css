@@ -348,12 +348,14 @@ ol.flow--steps {
 .site-nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-1) var(--sp-4);
+  gap: var(--sp-1) var(--sp-3);
 }
 
 .site-nav__link {
   display: inline-block;
-  padding-block: var(--sp-2);   /* Fitts: リンク全高 ≈48px */
+  /* モバイルは EN 表記の 1 行だけなので padding を厚くして Fitts の 44px を確保
+     （sp-3×2 + line-height 1.2×14px ≈ 49px）。600px 以上は JA が戻るため sp-2 に戻す */
+  padding-block: var(--sp-3);
   border-bottom: 2px solid transparent;
   color: var(--c-text-muted);
   font-size: var(--fs-sm);
@@ -368,10 +370,10 @@ ol.flow--steps {
   line-height: 1.2;
 }
 
+/* モバイルはタブの範囲を圧迫するため EN 表記のみにする（DESIGN.md 5章に追記）。
+   600px 以上は画面に余裕があるため JA サブラベルを戻す */
 .site-nav__link-ja {
-  display: block;
-  font-size: var(--fs-xs);
-  line-height: 1.4;
+  display: none;
 }
 
 .site-nav__link:hover {
@@ -382,6 +384,22 @@ ol.flow--steps {
   border-bottom-color: var(--c-accent);
   color: var(--c-text);
   font-weight: 700;
+}
+
+@media (min-width: 600px) {
+  .site-nav__list {
+    gap: var(--sp-1) var(--sp-4);
+  }
+
+  .site-nav__link {
+    padding-block: var(--sp-2);   /* Fitts: リンク全高 ≈48px（EN+JA 2行） */
+  }
+
+  .site-nav__link-ja {
+    display: block;
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+  }
 }
 
 /* --- Hero --- */
@@ -408,9 +426,17 @@ ol.flow--steps {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* パララックスの可動域。JS は transform ではなく translate プロパティで
-     オフセットを与えるため、この scale と独立して合成される */
-  transform: scale(1.12);
+  /* モバイルはパララックスを止める（main.js）ぶん可動域の拡大が要らないため、
+     最小限のスケールにして cover の左右クロップを増やさない（DESIGN.md 6章に追記） */
+  transform: scale(1.02);
+}
+
+@media (min-width: 600px) {
+  .hero__video {
+    /* パララックスの可動域。JS は transform ではなく translate プロパティで
+       オフセットを与えるため、この scale と独立して合成される */
+    transform: scale(1.12);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -725,6 +751,12 @@ ol.flow--steps {
 }
 
 .skill-card {
+  display: flex;
+  flex-direction: column;
+  /* 説明文の文字数差で枠の高さがバラつき、青枠が不揃いに見えるための下限固定。
+     3行分の説明文+アイコン+見出しが収まる高さ（.profile__photo と同種の固定値の例外。
+     DESIGN.md 2章に追記） */
+  min-height: calc(var(--sp-7) * 3 + var(--sp-4));
   padding: var(--sp-4);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-lg);

@@ -130,6 +130,12 @@
       return;
     }
 
+    /* モバイル（600px未満）は .hero__video の scale を最小限にしていて
+       視差の可動域が無いため、そもそも動かさない（DESIGN.md 6章に追記） */
+    if (window.matchMedia && !window.matchMedia('(min-width: 600px)').matches) {
+      return;
+    }
+
     var media = document.querySelector('[data-hero-video]');
     var hero = media && media.closest('.hero');
     if (!hero) {
